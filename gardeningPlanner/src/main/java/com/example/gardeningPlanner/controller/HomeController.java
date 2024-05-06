@@ -12,5 +12,4 @@ public class HomeController {
         model.addAttribute("message", "Welcome to the Garden Planner");
         return "home"; // name of Thymeleaf-Template
     }
-
 }
