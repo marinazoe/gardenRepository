@@ -10,7 +10,7 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("message", "Welcome to the Garden Planner");
-        return "home"; //name of Thymeleaf-Template
+        return "home"; // name of Thymeleaf-Template
     }
-    
+
 }
