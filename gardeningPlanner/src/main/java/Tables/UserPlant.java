@@ -14,20 +14,20 @@ public class UserPlant {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(length=32, nullable = true, unique = false)
+    @Column(length = 32, nullable = true, unique = false)
     private String nickname;
 
-    @Column(length=2048, nullable = true, unique = false)
+    @Column(length = 2048, nullable = true, unique = false)
     private String notes;
 
     @Column(nullable = false, unique = false)
     private boolean notifications_enabled;
 
     @ManyToOne
-    @JoinColumn(name="plant_id")
+    @JoinColumn(name = "plant_id")
     private Plant plant;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 }
