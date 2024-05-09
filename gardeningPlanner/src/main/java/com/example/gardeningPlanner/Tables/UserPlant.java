@@ -1,4 +1,4 @@
-package Tables;
+package com.example.gardeningPlanner.Tables;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,6 +28,6 @@ public class UserPlant {
     private Plant plant;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "userAccount_id")
+    private UserAccount userAccount;
 }

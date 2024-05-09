@@ -1,4 +1,4 @@
-package Tables;
+package com.example.gardeningPlanner.Tables;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class User {
+public class UserAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -24,7 +24,7 @@ public class User {
     @Column(length = 64, nullable = false, unique = false)
     private String username;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "userAccount")
     private List<UserPlant> userPlants;
 
     // ------------------------------------------------------------

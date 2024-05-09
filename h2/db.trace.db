@@ -1,0 +1,24 @@
+2024-05-09 18:51:12.849255+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "CREATE TABLE Plant ([*]"; erwartet "identifier"
+Syntax error in SQL statement "CREATE TABLE Plant ([*]"; expected "identifier"; SQL statement:
+CREATE TABLE Plant ( [42001-224]
+2024-05-09 18:51:12.856123+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "[*]id INT PRIMARY KEY AUTO_INCREMENT"; erwartet "INSERT"
+Syntax error in SQL statement "[*]id INT PRIMARY KEY AUTO_INCREMENT"; expected "INSERT"; SQL statement:
+id INT PRIMARY KEY AUTO_INCREMENT [42001-224]
+2024-05-09 18:51:12.860123+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "[*])"
+Syntax error in SQL statement "[*])"; SQL statement:
+) [42000-224]
+2024-05-09 18:51:22.060143+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "CREATE TABLE Plant ([*]"; erwartet "identifier"
+Syntax error in SQL statement "CREATE TABLE Plant ([*]"; expected "identifier"; SQL statement:
+CREATE TABLE Plant ( [42001-224]
+2024-05-09 18:51:22.067143+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "[*]id INT PRIMARY KEY AUTO_INCREMENT"; erwartet "INSERT"
+Syntax error in SQL statement "[*]id INT PRIMARY KEY AUTO_INCREMENT"; expected "INSERT"; SQL statement:
+id INT PRIMARY KEY AUTO_INCREMENT [42001-224]
+2024-05-09 18:51:22.071142+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "[*])"
+Syntax error in SQL statement "[*])"; SQL statement:
+) [42000-224]

@@ -1,4 +1,4 @@
-package Tables;
+package com.example.gardeningPlanner.Tables;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class Plant {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(length=64, nullable = false, unique = false)
+    @Column(length = 64, nullable = false, unique = false)
     private String name;
 
     @Column(nullable = false, unique = false)
@@ -30,7 +30,7 @@ public class Plant {
     @Column(nullable = false, unique = false)
     private int fertilize_winter;
 
-    @Column(length=64, nullable = false, unique = false)
+    @Column(length = 64, nullable = false, unique = false)
     private String spot;
 
     @Column(nullable = false, unique = false)
