@@ -23,3 +23,6 @@
 hs_err_pid*
 replay_pid*
 content.http
+h2/db.mv.db
+h2/db.trace.db
+h2
