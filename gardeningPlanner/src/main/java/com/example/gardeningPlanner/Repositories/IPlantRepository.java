@@ -4,6 +4,6 @@ import org.springframework.data.repository.ListCrudRepository;
 
 import com.example.gardeningPlanner.Tables.Plant;
 
-public interface PlantRepository extends ListCrudRepository<Plant, Integer> {
+public interface IPlantRepository extends ListCrudRepository<Plant, Integer> {
 
 }
