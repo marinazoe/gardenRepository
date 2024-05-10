@@ -70,3 +70,15 @@ id INT PRIMARY KEY AUTO_INCREMENT [42001-224]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "[*])"
 Syntax error in SQL statement "[*])"; SQL statement:
 ) [42000-224]
+2024-05-10 12:19:42.969134+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "CREATE TABLE Plant ([*]"; erwartet "identifier"
+Syntax error in SQL statement "CREATE TABLE Plant ([*]"; expected "identifier"; SQL statement:
+CREATE TABLE Plant ( [42001-224]
+2024-05-10 12:19:42.976134+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "[*]id INT PRIMARY KEY AUTO_INCREMENT"; erwartet "INSERT"
+Syntax error in SQL statement "[*]id INT PRIMARY KEY AUTO_INCREMENT"; expected "INSERT"; SQL statement:
+id INT PRIMARY KEY AUTO_INCREMENT [42001-224]
+2024-05-10 12:19:42.980135+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "[*])"
+Syntax error in SQL statement "[*])"; SQL statement:
+) [42000-224]
