@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.example.gardeningPlanner.Tables.UserAccount;
 import com.example.gardeningPlanner.Tables.UserPlant;
 
+// Data for UserDetailsService to keep current logged in user
+
 public final class UserAccountDetails implements UserDetails, CredentialsContainer{
     private int id;
     private String emailAddress;

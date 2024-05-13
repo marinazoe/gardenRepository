@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.example.gardeningPlanner.Repositories.IUserRepository;
 
+// Retrieves a user account from the database by username and converts it to a UserDetails object
+
 class UserAccountDetailsService implements UserDetailsService{
     
     private IUserRepository iUserRepository;

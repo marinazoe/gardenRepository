@@ -22,7 +22,7 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.GET, value = LOGIN_ENDPOINT, params = "error=true")
     public String login(HttpServletRequest request, Model model) {
-        model.addAttribute("error", true); // true: Zeige Default-Error in Template.
+        model.addAttribute("error", true); // true: For Default Error Message
         return LOGIN_FILENAME;
     }
 
