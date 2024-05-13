@@ -28,6 +28,14 @@ public class UserAccount {
     private List<UserPlant> userPlants;
 
     // ------------------------------------------------------------
+    // Constructor
+    // ------------------------------------------------------------
+    public UserAccount(String username, String password_hash) {
+        this.username = username;
+        this.password_hash = password_hash;
+    }
+
+    // ------------------------------------------------------------
     // Getters
     // ------------------------------------------------------------
     public int getId() {

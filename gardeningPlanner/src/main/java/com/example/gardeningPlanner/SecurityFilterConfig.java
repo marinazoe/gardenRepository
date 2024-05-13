@@ -32,6 +32,7 @@ public class SecurityFilterConfig {
         return http.build();
     }
 
+    // Allows for Custom login page
     private static void permitCustomLoginPage(HttpSecurity http, String url) throws Exception {
         http.formLogin(form -> form
                 .loginPage(url)
@@ -43,6 +44,9 @@ public class SecurityFilterConfig {
         return new SimpleUrlAuthenticationFailureHandler(url);
     }
 
+    /*
+     * Only for Development, remove afterwards
+     */
     private static void permitH2Console(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authz -> authz.requestMatchers(PathRequest.toH2Console()).permitAll());
         http.headers(headers -> headers.frameOptions(FrameOptionsConfig::sameOrigin));
