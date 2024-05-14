@@ -25,7 +25,7 @@ public class SecurityFilterConfig {
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/error").permitAll()
                 .requestMatchers("/login").permitAll()
-                .requestMatchers("/css/styles.css").permitAll()
+                .requestMatchers("/css/style.css").permitAll()
                 .requestMatchers("/register").anonymous()
                 .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated());
