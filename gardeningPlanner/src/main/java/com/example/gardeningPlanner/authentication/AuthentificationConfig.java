@@ -21,7 +21,7 @@ public class AuthentificationConfig {
 
     @Bean
     UserDetailsService userDetailsService(IUserRepository iUserRepository) {
-        return new UserAccountDetailsService(iUserRepository);
+        return new UserAccountUserDetailsService(iUserRepository);
     }
 
     @Bean

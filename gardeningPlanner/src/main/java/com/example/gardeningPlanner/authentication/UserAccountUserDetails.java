@@ -13,7 +13,7 @@ import com.example.gardeningPlanner.Tables.UserPlant;
 
 // Data for UserDetailsService to keep current logged in user
 
-public final class UserAccountDetails implements UserDetails, CredentialsContainer{
+public final class UserAccountUserDetails implements UserDetails, CredentialsContainer{
     private int id;
     private String emailAddress;
     private String passwordHash;
@@ -21,7 +21,7 @@ public final class UserAccountDetails implements UserDetails, CredentialsContain
     private List<UserPlant> userPlants;
     private List<GrantedAuthority> authorities;
 
-    public UserAccountDetails(UserAccount userAccount) {
+    public UserAccountUserDetails(UserAccount userAccount) {
         this.id = userAccount.getId();
         this.emailAddress = userAccount.getEmail();
         this.passwordHash = userAccount.getPasswordHash();

@@ -10,18 +10,18 @@ import com.example.gardeningPlanner.Repositories.IUserRepository;
 
 // Retrieves a user account from the database by username and converts it to a UserDetails object
 
-class UserAccountDetailsService implements UserDetailsService{
+class UserAccountUserDetailsService implements UserDetailsService{
     
     private IUserRepository iUserRepository;
 
-    UserAccountDetailsService(IUserRepository iUserRepository){
+    UserAccountUserDetailsService(IUserRepository iUserRepository){
         this.iUserRepository = iUserRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         var userAccount = iUserRepository.findByUsername(username).orElseThrow(usernameNotFoundException(username));
-        return new UserAccountDetails(userAccount);
+        return new UserAccountUserDetails(userAccount);
     }
 
     private static Supplier<UsernameNotFoundException> usernameNotFoundException(String username) {
