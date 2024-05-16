@@ -19,12 +19,11 @@ public class SecurityFilterConfig {
         permitH2Console(http);
 
         http.csrf(csrf -> csrf.disable()).authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/", "/home", "/css/style.css").permitAll()
+                .requestMatchers("/", "/home", "/css/style.css", "/register").permitAll()
                 .anyRequest().authenticated())
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/", true)
-                        .successForwardUrl("/")
                         .permitAll())
                 .logout((logout) -> logout.permitAll());
 

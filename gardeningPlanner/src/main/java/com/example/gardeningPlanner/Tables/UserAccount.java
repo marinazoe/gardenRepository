@@ -24,13 +24,13 @@ public class UserAccount {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(length = 64, nullable = false, unique = false)
+    @Column(length = 64, nullable = true, unique = false)
     private String email_address;
 
     @Column(length = 256, nullable = false, unique = false)
     private String password_hash;
 
-    @Column(length = 64, nullable = false, unique = false)
+    @Column(length = 64, nullable = false, unique = true)
     private String username;
 
     @OneToMany(mappedBy = "userAccount")

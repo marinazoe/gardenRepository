@@ -62,6 +62,7 @@ class RegisterController {
     /*
      * Post request for the Register/login page
      */
+
     @PostMapping(REGISTER_ENDPOINT)
     public String registerNewUserAccount(
             HttpServletRequest request,
@@ -72,10 +73,9 @@ class RegisterController {
             String password) {
 
         final var usernameTrimmed = StringUtil.trim(username);
-
         try { // with database connection
-            var invalidInput = StringUtil.isEmpty(usernameTrimmed) | StringUtil.isEmpty(password);
-            if (invalidInput | userAlreadyExistsWith(usernameTrimmed)) {
+            var invalidInput = StringUtil.isEmpty(usernameTrimmed) || StringUtil.isEmpty(password);
+            if (invalidInput || userAlreadyExistsWith(usernameTrimmed)) {
                 // return to register with error message
                 return REGISTER_FILENAME;
             }
@@ -89,7 +89,7 @@ class RegisterController {
         autoLoginNewUser(request, response, usernameTrimmed, password);
 
         // Direct to Home Site
-        return "/home";
+        return "redirect:/";
     }
 
     private boolean userAlreadyExistsWith(String username) {
