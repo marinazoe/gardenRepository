@@ -41,4 +41,8 @@ public class Plant {
 
     @OneToMany(mappedBy = "plant")
     private List<UserPlant> userPlants;
+
+    protected Plant() {
+
+    }
 }

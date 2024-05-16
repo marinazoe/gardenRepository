@@ -55,6 +55,9 @@ public class UserAccount {
         addAuthorities("ROLE_USER");
     }
 
+    protected UserAccount() {
+    }
+
     // ------------------------------------------------------------
     // Methods
     // ------------------------------------------------------------
@@ -82,10 +85,10 @@ public class UserAccount {
         return password_hash; // vorläufig
     }
 
-  public String getUsername() {
+    public String getUsername() {
         return username;
     }
-  
+
     public List<UserPlant> getUserPlants() {
         return userPlants;
     }
@@ -108,7 +111,6 @@ public class UserAccount {
     public void setPasswordHash(String _password) {
         password_hash = _password; // vorläufig
     }
-
 
     public void setUsername(String _username) {
         username = _username;

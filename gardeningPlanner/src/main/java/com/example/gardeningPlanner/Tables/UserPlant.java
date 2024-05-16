@@ -30,4 +30,7 @@ public class UserPlant {
     @ManyToOne
     @JoinColumn(name = "userAccount_id")
     private UserAccount userAccount;
+
+    protected UserPlant() {
+    }
 }

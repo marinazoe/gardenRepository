@@ -8,8 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer.FrameOptionsConfig;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -18,30 +16,19 @@ public class SecurityFilterConfig {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        permitCustomLoginPage(http, "/login");
         permitH2Console(http);
 
-        http.authorizeHttpRequests(authz -> authz
-                .requestMatchers("/").permitAll()
-                .requestMatchers("/error").permitAll()
-                .requestMatchers("/login").permitAll()
-                .requestMatchers("/css/style.css").permitAll()
-                .requestMatchers("/register").anonymous()
-                .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
-                .anyRequest().authenticated());
+        http.csrf(csrf -> csrf.disable()).authorizeHttpRequests((requests) -> requests
+                .requestMatchers("/", "/home", "/css/style.css").permitAll()
+                .anyRequest().authenticated())
+                .formLogin((form) -> form
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/", true)
+                        .successForwardUrl("/")
+                        .permitAll())
+                .logout((logout) -> logout.permitAll());
+
         return http.build();
-    }
-
-    // Allows for Custom login page
-    private static void permitCustomLoginPage(HttpSecurity http, String url) throws Exception {
-        http.formLogin(form -> form
-                .loginPage(url)
-                .failureHandler(customAuthenticationFailureHandler(url + "?error=true"))
-                .permitAll());
-    }
-
-    private static AuthenticationFailureHandler customAuthenticationFailureHandler(String url) {
-        return new SimpleUrlAuthenticationFailureHandler(url);
     }
 
     /*
