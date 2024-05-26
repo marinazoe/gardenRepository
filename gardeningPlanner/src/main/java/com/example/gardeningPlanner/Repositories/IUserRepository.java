@@ -9,4 +9,6 @@ import com.example.gardeningPlanner.Tables.UserAccount;
 public interface IUserRepository extends ListCrudRepository<UserAccount, Integer> {
 
     Optional<UserAccount> findByUsername(String username);
+
+    void deleteById(int id);
 }

@@ -8,6 +8,16 @@
 
 <body>
     <h1 th:text="${message}"></h1>
+    
+    <!-- temporäres Logout -->
+    <a href="/logout">Logout</a>
+
+    <!-- temporäres Account löschen -->
+    <form action="/user/delete/{id}" method="delete">
+        <input type="hidden" name="id" th:value="${userId}">
+        <input type="submit" value="Account löschen">
+    </form>
+
 </body>
 
 </html>
