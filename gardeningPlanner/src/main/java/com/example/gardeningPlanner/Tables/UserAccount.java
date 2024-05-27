@@ -42,6 +42,9 @@ public class UserAccount {
     // ------------------------------------------------------------
     // Constructor
     // ------------------------------------------------------------
+    protected UserAccount() {
+    }
+    
     public UserAccount(String email_address, String username, String password_hash) {
         this.username = username;
         this.password_hash = password_hash;
@@ -53,9 +56,6 @@ public class UserAccount {
         this.username = username;
         this.password_hash = password_hash;
         addAuthorities("ROLE_USER");
-    }
-
-    protected UserAccount() {
     }
 
     // ------------------------------------------------------------
