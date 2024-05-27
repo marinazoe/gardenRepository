@@ -46,7 +46,7 @@ public class UserPlant {
         this.notifications_enabled = false;
         this.plant = plant;
         this.userAccount = userAccount;
-
+        this.added_date = LocalDate.now();
     }
 
     // ------------------------------------------------------------
