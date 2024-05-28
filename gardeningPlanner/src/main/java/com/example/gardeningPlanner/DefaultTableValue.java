@@ -18,7 +18,7 @@ import com.example.gardeningPlanner.Tables.UserPlant;
  */
 @Configuration
 public class DefaultTableValue {
-    
+    /* 
     private IUserRepository iUserRepository;
     private IUserPlantRepository iUserPlantRepository;
     private IPlantRepository iPlantRepository;
@@ -55,5 +55,5 @@ public class DefaultTableValue {
             var newDefaultUserPlant = new UserPlant(newDefaultPlant ,newDefaultUser);
             iUserPlantRepository.save(newDefaultUserPlant);
         }
-    }
+    } */
 }
