@@ -1,22 +1,35 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en"></html>
 
 <head>
     <meta charset="UTF-8">
-    <title>Garden Planner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Planner</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <h1 th:text="${message}"></h1>
     
-    <!-- temporäres Logout -->
-    <a href="/logout">Logout</a>
 
-    <!-- temporäres Account löschen -->
-    <form action="/user/delete/{id}" method="delete">
-        <input type="hidden" name="id" th:value="${userId}">
-        <input type="submit" value="Account löschen">
-    </form>
+    <!-- Logout & delete Account -->
+    <div class="action-icons">
+
+        <form id="deleteForm" action="/user/delete/{id}" method="delete" class="icon">
+            <input type="hidden" name="id" th:value="${userId}">
+            <button type="submit" class="delete-button">
+                <img src="/images/delete-account.jpg" alt="delete-account icon" class="icon">
+            </button>
+        </form>
+        
+        <form action="/logout" method="post" >
+            <button type="submit" class="logout-button">
+                <img src="/images/logout.jpg" alt="logout icon">
+            </button>
+        </form>
+
+
+    </div>
 
 </body>
 
