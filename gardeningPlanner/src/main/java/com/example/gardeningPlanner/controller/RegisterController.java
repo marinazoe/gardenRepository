@@ -89,7 +89,7 @@ class RegisterController {
         autoLoginNewUser(request, response, usernameTrimmed, password);
 
         // Direct to Home Site
-        return "redirect:/";
+        return "redirect:/calender";
     }
 
     private boolean userAlreadyExistsWith(String username) {

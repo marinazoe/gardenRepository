@@ -23,7 +23,7 @@ public class SecurityFilterConfig {
                 .anyRequest().authenticated())
                 .formLogin((form) -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/", true)
+                        .defaultSuccessUrl("/calender", true)
                         .permitAll())
                 .logout((logout) -> logout
                         .logoutUrl("/logout")

@@ -79,6 +79,5 @@ public final class UserAccountDetails implements UserDetails, CredentialsContain
     @Override
     public void eraseCredentials() {
         passwordHash = null;
-        emailAddress = null;
     }
 }
