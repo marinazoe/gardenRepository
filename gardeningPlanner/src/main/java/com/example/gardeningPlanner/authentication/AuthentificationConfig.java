@@ -21,11 +21,12 @@ public class AuthentificationConfig {
 
     @Bean
     UserDetailsService userDetailsService(IUserRepository iUserRepository) {
-        return new UserAccountUserDetailsService(iUserRepository);
+        return new UserAccountDetailsService(iUserRepository);
     }
 
     @Bean
-    AuthenticationManager authenticationManager(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
+    AuthenticationManager authenticationManager(UserDetailsService userDetailsService,
+            PasswordEncoder passwordEncoder) {
 
         var provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
