@@ -15,18 +15,19 @@
     <!-- Logout & delete Account -->
     <div class="action-icons">
 
-        <form id="deleteForm" action="/user/delete/{id}" method="delete" class="icon">
+        <form id="deleteForm" action="/user/delete" method="post" class="icon">
             <input type="hidden" name="id" th:value="${userId}">
             <button type="submit" class="delete-button">
                 <img src="/images/delete-account.jpg" alt="delete-account icon" class="icon">
             </button>
         </form>
-
+        
         <form action="/logout" method="post" >
             <button type="submit" class="logout-button">
                 <img src="/images/logout.jpg" alt="logout icon">
             </button>
         </form>
+
 
     </div>
 
