@@ -30,6 +30,8 @@ class RegisterController {
 
     private static final String REGISTER_FILENAME = "login_register";
 
+    private static final String CALANDER_FILENAME = "redirect:/calender";
+
     private final SecurityContextHolderStrategy securityContextHolderStrategy = SecurityContextHolder
             .getContextHolderStrategy();
 
@@ -70,8 +72,19 @@ class RegisterController {
             Model model,
             Locale locale,
             String username,
-            String password) {
+            String password,
+            String password2,
+            String email) {
 
+        // Check if both passwords are the same
+        if (password != password2) {
+            // return to register with error message
+            return REGISTER_FILENAME;
+        }
+        if (!StringUtil.isEmail(email)) {
+            // return to register with error message
+            return REGISTER_FILENAME;
+        }
         final var usernameTrimmed = StringUtil.trim(username);
         try { // with database connection
             var invalidInput = StringUtil.isEmpty(usernameTrimmed) || StringUtil.isEmpty(password);
@@ -79,7 +92,7 @@ class RegisterController {
                 // return to register with error message
                 return REGISTER_FILENAME;
             }
-            saveNewUser(usernameTrimmed, password);
+            saveNewUser(usernameTrimmed, password, email);
         } catch (Exception e) {
             // return to register with error message
             return REGISTER_FILENAME;
@@ -89,15 +102,15 @@ class RegisterController {
         autoLoginNewUser(request, response, usernameTrimmed, password);
 
         // Direct to Home Site
-        return "redirect:/calender";
+        return CALANDER_FILENAME;
     }
 
     private boolean userAlreadyExistsWith(String username) {
         return iUserRepository.findByUsername(username).isPresent();
     }
 
-    private void saveNewUser(String username, String password) {
-        var newUser = new UserAccount(username, passwordEncoder.encode(password));
+    private void saveNewUser(String username, String password, String email) {
+        var newUser = new UserAccount(username, passwordEncoder.encode(password), email);
         iUserRepository.save(newUser);
     }
 

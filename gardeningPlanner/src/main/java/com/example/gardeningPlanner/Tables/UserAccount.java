@@ -44,8 +44,8 @@ public class UserAccount {
     // ------------------------------------------------------------
     protected UserAccount() {
     }
-    
-    public UserAccount(String email_address, String username, String password_hash) {
+
+    public UserAccount(String username, String password_hash, String email_address) {
         this.username = username;
         this.password_hash = password_hash;
         this.email_address = email_address;
