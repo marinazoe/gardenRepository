@@ -18,7 +18,6 @@ import com.example.gardeningPlanner.Tables.UserPlant;
 /*
  * Has to be removed before Production!
  */
-@Order(2)
 @Configuration
 public class DefaultTableValue {
 
@@ -34,6 +33,7 @@ public class DefaultTableValue {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Order(2)
     @Bean
 	CommandLineRunner commandLineRunnerWithDefaultTableValues (IUserRepository iUserRepository, IUserPlantRepository iUserPlantRepository, IPlantRepository iPlantRepository){
 		return args -> {
@@ -48,7 +48,7 @@ public class DefaultTableValue {
     private void insertDefaultValues(String email, String username, String password, String name){
         if(isNotInUserTable(username)){
             var newDefaultPlant = iPlantRepository.findByName(name).orElseThrow(NoSuchElementException::new);
-            var newDefaultUser = new UserAccount(email, username, passwordEncoder.encode(password));
+            var newDefaultUser = new UserAccount(username, passwordEncoder.encode(password), email);
             iUserRepository.save(newDefaultUser);
             var newDefaultUserPlant = new UserPlant(newDefaultPlant ,newDefaultUser);
             iUserPlantRepository.save(newDefaultUserPlant);

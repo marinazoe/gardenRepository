@@ -11,7 +11,6 @@ import com.example.gardeningPlanner.Repositories.IPlantRepository;
 import com.example.gardeningPlanner.Tables.Plant;
 import com.example.gardeningPlanner.data.InitialPlants;
 
-@Order(1)
 @Configuration
 public class PlantInitializer {
     
@@ -21,6 +20,7 @@ public class PlantInitializer {
         this.iPlantRepository = iPlantRepository;
     }
     
+    @Order(1)
     @Bean
     CommandLineRunner commandLineRunner(IPlantRepository iPlantRepository) {
         return args -> {

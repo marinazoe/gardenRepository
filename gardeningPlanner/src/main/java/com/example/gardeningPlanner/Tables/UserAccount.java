@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -33,7 +34,7 @@ public class UserAccount {
     @Column(length = 64, nullable = false, unique = true)
     private String username;
 
-    @OneToMany(mappedBy = "userAccount")
+    @OneToMany(mappedBy = "userAccount", cascade = CascadeType.ALL)
     private List<UserPlant> userPlants;
 
     @ElementCollection(fetch = FetchType.EAGER)
