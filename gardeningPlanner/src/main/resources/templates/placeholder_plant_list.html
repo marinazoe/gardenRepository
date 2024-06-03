@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Planner</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Showing Plants and Adding Button -->
+    <tr th:each="entry : ${list}">
+        <td><span th:text="${entry.name}"> Name </span></td>
+        <td><form action="/add_Plant" method="post">
+            <button type="submit" name="plantName" th:value="${entry.name}">Add</button>
+        </form></td>
+    </tr>
+
+    <!-- Logout -->
+    <div class="action-icons">
+        
+        <form action="/logout" method="post" >
+            <button type="submit" class="logout-button">
+                <img src="/images/logout.jpg" alt="logout icon">
+            </button>
+        </form>
+
+
+    </div>
+
+</body>
+
+</html>
