@@ -77,7 +77,7 @@ class RegisterController {
             String email) {
 
         // Check if both passwords are the same
-        if (password != password2) {
+        if (!password.equals(password2)) {
             // return to register with error message
             return REGISTER_FILENAME;
         }
