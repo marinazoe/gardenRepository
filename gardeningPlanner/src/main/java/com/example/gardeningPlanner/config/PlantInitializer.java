@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 import com.example.gardeningPlanner.Repositories.IPlantRepository;
 import com.example.gardeningPlanner.Tables.Plant;
 import com.example.gardeningPlanner.data.InitialPlants;
 
+@Order(1)
 @Configuration
 public class PlantInitializer {
     

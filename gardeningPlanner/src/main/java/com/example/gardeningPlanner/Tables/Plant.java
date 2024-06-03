@@ -15,7 +15,7 @@ public class Plant {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(length = 64, nullable = false, unique = false)
+    @Column(length = 64, nullable = false, unique = true)
     private String name;
 
     @Column(nullable = false, unique = false)
