@@ -17,6 +17,10 @@ import com.example.gardeningPlanner.authentication.UserAccountDetails;
 
 @Controller
 public class UserPlantsController {
+
+    private static final String USER_PLANTS_ENDPOINT = "/user_plants";
+
+    private static final String USER_PLANTS_FILENAME = "placeholder_user_plants";
     
     private IUserRepository iUserRepository;
     private IUserPlantRepository iUserPlantRepository;
@@ -29,7 +33,7 @@ public class UserPlantsController {
     /*
      * Get request for the user plants site
      */
-    @GetMapping("/user_plants")
+    @GetMapping(USER_PLANTS_ENDPOINT)
     public String userPlants(Model model, Authentication authentication,
     @AuthenticationPrincipal UserAccountDetails user) {
         var currentUser = getCurrentUser(user);
@@ -37,7 +41,7 @@ public class UserPlantsController {
         var currentUserPlants = findAllUserPlants(currentUser);
 
         model.addAttribute("userPlants", currentUserPlants);
-        return "placeholder_user_plants";
+        return USER_PLANTS_FILENAME;
     }
 
     private UserAccount getCurrentUser(UserAccountDetails user) {

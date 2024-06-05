@@ -22,6 +22,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class PlantListController {
 
+    private static final String PLANT_LIST_ENDPOINT = "/plant_list";
+
+    private static final String PLANT_LIST_FILENAME = "placeholder_plant_list";
+    
+    private static final String ADD_PLANT_ENDPOINT = "/add_Plant";
+
+    private static final String PLANT_LIST_REDIRECT = "redirect:/plant_list";
+
     private IPlantRepository iPlantRepository;
     private IUserRepository iUserRepository;
     private IUserPlantRepository iUserPlantRepository;
@@ -35,17 +43,17 @@ public class PlantListController {
     /*
      * Get request for the plant list site
      */
-    @GetMapping("/plant_list")
+    @GetMapping(PLANT_LIST_ENDPOINT)
     public String plantList(Model model, Authentication authentication,
     @AuthenticationPrincipal UserAccountDetails user) {
         model.addAttribute("list", getAllPlants());
-        return "placeholder_plant_list";
+        return PLANT_LIST_FILENAME;
     }
 
     /*
      * Post request for adding a plant to the User
      */
-    @PostMapping("/add_Plant")
+    @PostMapping(ADD_PLANT_ENDPOINT)
     public String addPlant(Model model, Authentication authentication,
     @AuthenticationPrincipal UserAccountDetails user, int plantId) {
 
@@ -55,7 +63,7 @@ public class PlantListController {
 
         saveNewUserPlant(insertPlant, currentUser);
 
-        return "redirect:/plant_list";
+        return PLANT_LIST_REDIRECT;
     }
 
     private List<Plant> getAllPlants() {
