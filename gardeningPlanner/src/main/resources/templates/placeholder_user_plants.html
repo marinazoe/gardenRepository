@@ -9,13 +9,11 @@
 </head>
 
 <body>
-    <h1>Plant List</h1>
-    <!-- Showing Plants and Adding Button -->
-    <tr th:each="entry : ${list}">
-        <td><span th:text="${entry.name}"> Name </span></td>
-        <td><form action="/add_Plant" method="post">
-            <button type="submit" name="plantId" th:value="${entry.id}">Add</button>
-        </form></td>
+    <h1>User Plants</h1>
+
+    <!-- Showing User Plants -->
+    <tr th:each="userPlant : ${userPlants}">
+        <td><span th:text="${userPlant.plant.name}"> ID </span> <br> </td>
     </tr>
 
     <!-- Calender Site-->

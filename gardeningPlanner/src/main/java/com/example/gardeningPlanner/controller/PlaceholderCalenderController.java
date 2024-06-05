@@ -15,7 +15,7 @@ public class PlaceholderCalenderController {
     public String home(Model model, Authentication authentication,
     @AuthenticationPrincipal UserAccountDetails user) {
         model.addAttribute("message", user.getUsername());
-        System.out.println(user.getUsername());
-        return "placeholder_calender"; // name of Thymeleaf-Template
+        //System.out.println(user.getUsername());
+        return "placeholder_calender";
     }
 }

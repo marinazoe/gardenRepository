@@ -1,5 +1,6 @@
 package com.example.gardeningPlanner.controller;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.security.core.Authentication;
@@ -37,7 +38,7 @@ public class PlantListController {
     @GetMapping("/plant_list")
     public String plantList(Model model, Authentication authentication,
     @AuthenticationPrincipal UserAccountDetails user) {
-        model.addAttribute("list", iPlantRepository.findAll());
+        model.addAttribute("list", getAllPlants());
         return "placeholder_plant_list";
     }
 
@@ -46,9 +47,9 @@ public class PlantListController {
      */
     @PostMapping("/add_Plant")
     public String addPlant(Model model, Authentication authentication,
-    @AuthenticationPrincipal UserAccountDetails user, String plantName) {
+    @AuthenticationPrincipal UserAccountDetails user, int plantId) {
 
-        var insertPlant = getPlantForAddingProcess(plantName);
+        var insertPlant = getPlantFromPlantTable(plantId);
 
         var currentUser = getCurrentUser(user);
 
@@ -57,11 +58,15 @@ public class PlantListController {
         return "redirect:/plant_list";
     }
 
-    private <Optional>Plant getPlantForAddingProcess(String plantName) {
-        return iPlantRepository.findByName(plantName).orElseThrow(NoSuchElementException::new);
+    private List<Plant> getAllPlants() {
+        return iPlantRepository.findAll();
     }
 
-    private <Optional>UserAccount getCurrentUser(UserAccountDetails user) {
+    private Plant getPlantFromPlantTable(int plantId) {
+        return iPlantRepository.findById(plantId).orElseThrow(NoSuchElementException::new);
+    }
+
+    private UserAccount getCurrentUser(UserAccountDetails user) {
         return iUserRepository.findById(user.getId()).orElseThrow(NoSuchElementException::new);
     }
     
