@@ -41,6 +41,14 @@
 
             <input type="submit" value="Anmelden">
         </form>
+        <p>
+            <div th:if="${error}">    
+                Falscher Benutzername oder falsches Passwort.
+            </div>
+            <div th:if="${logout}">    
+                Sie sind abgemeldet.
+            </div>
+        </p>
     </div>
 </div>
 </body>
