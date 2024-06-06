@@ -1,56 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login und Registrierung</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+    <h1>Gardening Planner</h1>
+    <div class="container">
 
-<h1>Gardening Planner</h1>
-<div class="container">
+        <div class="form register">
+            <h2>Registrieren</h2>
+            <form action="/register" method="post">
+                <label for="register-username">Benutzername:</label>
+                <input type="text" id="register-username" name="username" required>
 
-    <div class="form register">
-        <h2>Registrieren</h2>
-        <form action="/register" method="post">
-            <label for="register-username">Benutzername:</label>
-            <input type="text" id="register-username" name="username" required>
+                <label for="register-email">Email:</label>
+                <input type="text" id="register-email" name="email" required>
 
-            <label for="register-email">Email:</label>
-            <input type="text" id="register-email" name="email" required>
+                <label for="register-password">Passwort:</label>
+                <input type="password" id="register-password" name="password" required>
 
-            <label for="register-password">Passwort:</label>
-            <input type="password" id="register-password" name="password" required>
+                <label for="register-password2">Passwort erneut eingeben:</label>
+                <input type="password" id="register-password2" name="password2" required>
 
-            <label for="register-password2">Passwort erneut eingeben:</label>
-            <input type="password" id="register-password2" name="password2" required>
+                <input type="submit" value="Registrieren">
+            </form>
+            <p>
+            <div th:if="${email}">
+                Die angegebene Email is nicht gültig.
+            </div>
+            <div th:if="${used}">
+                Der Benutzername existiert bereits.
+            </div>
+            <div th:if="${pw}">
+                Die Passworter stimmen nicht überein.
+            </div>
+            <div th:if="${db}">
+                Die verbindung zum Datenbank Server konnte nicht hergestellt werden. Bitte kontaktieren sie den Seiten
+                betreiber.
+            </div>
+            </p>
+        </div>
 
-            <input type="submit" value="Registrieren">
-        </form>
-    </div>
+        <div class="form login">
+            <h2>Anmelden</h2>
+            <form action="/login" method="post">
+                <label for="login-username">Benutzername:</label>
+                <input type="text" id="login-username" name="username" required>
 
-    <div class="form login">
-        <h2>Anmelden</h2>
-        <form action="/login" method="post">
-            <label for="login-username">Benutzername:</label>
-            <input type="text" id="login-username" name="username" required>
+                <label for="login-password">Passwort:</label>
+                <input type="password" id="login-password" name="password" required>
 
-            <label for="login-password">Passwort:</label>
-            <input type="password" id="login-password" name="password" required>
-
-            <input type="submit" value="Anmelden">
-        </form>
-        <p>
-            <div th:if="${error}">    
+                <input type="submit" value="Anmelden">
+            </form>
+            <p>
+            <div th:if="${error}">
                 Falscher Benutzername oder falsches Passwort.
             </div>
-            <div th:if="${logout}">    
+            <div th:if="${logout}">
                 Sie sind abgemeldet.
             </div>
-        </p>
+            </p>
+        </div>
     </div>
-</div>
 </body>
-</html>
 
+</html>

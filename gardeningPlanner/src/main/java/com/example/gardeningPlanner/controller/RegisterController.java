@@ -78,23 +78,23 @@ class RegisterController {
 
         // Check if both passwords are the same
         if (!password.equals(password2)) {
-            // return to register with error message
+            model.addAttribute("pw", true);
             return REGISTER_FILENAME;
         }
         if (!StringUtil.isEmail(email)) {
-            // return to register with error message
+            model.addAttribute("email", true);
             return REGISTER_FILENAME;
         }
         final var usernameTrimmed = StringUtil.trim(username);
         try { // with database connection
             var invalidInput = StringUtil.isEmpty(usernameTrimmed) || StringUtil.isEmpty(password);
             if (invalidInput || userAlreadyExistsWith(usernameTrimmed)) {
-                // return to register with error message
+                model.addAttribute("used", true);
                 return REGISTER_FILENAME;
             }
             saveNewUser(usernameTrimmed, password, email);
         } catch (Exception e) {
-            // return to register with error message
+            model.addAttribute("db", true);
             return REGISTER_FILENAME;
         }
 
