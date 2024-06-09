@@ -12,6 +12,13 @@
 
     <h1>Plant List</h1>
 
+    <tr th:each="entry : ${list}">
+        <td><span th:text="${entry.name}"> Name </span></td>
+        <td><form action="/add_Plant" method="post">
+            <button type="submit" name="plantId" th:value="${entry.id}">Add</button>
+        </form></td>
+    </tr>
+
     <!-- calendar Site -->
     <form action="/calendar" method="get">
         <button type="submit">CALENDAR</button>
