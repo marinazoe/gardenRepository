@@ -10,25 +10,53 @@
 
 <body>
     <h1>Plant List</h1>
-    <!-- Showing Plants and Adding Button -->
-    <tr th:each="entry : ${list}">
-        <td><span th:text="${entry.name}"> Name </span></td>
-        <td><form action="/add_Plant" method="post">
-            <button type="submit" name="plantId" th:value="${entry.id}">Add</button>
-        </form></td>
-    </tr>
 
-    <!-- Calender Site-->
-    <form action="/calender" method="get">
-        <button type="submit">CALENDER</button>
-    </form>
+    <div class="row">
+        <div class="card-column" th:each="entry:${list}">
+            <div class="card">
+                <form action="/add_Plant" method="post">
+                    <div style="display: flex;">
+                        <p class="card-title" th:text="${entry.name}"></p>
+                        <button class="add-button" type="submit" name="plantId" th:value="${entry.id}">
+                            <img style="height:100%" src="/images/add_plant.png" alt="add-plant-icon" class="icon">
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-    <!-- Logout -->
+    
+
+    
+
+
     <div class="action-icons">
+        
+        <form id="deleteForm" action="/user/delete" method="post" class="icon">
+            <input type="hidden" name="id" th:value="${userId}">
+            <button type="submit" class="delete-button">
+                <img src="/images/delete-account-3.png" alt="delete-account icon" class="icon">
+            </button>
+        </form>
+        
+        <!-- Calender Site-->
+        <form action="/calender" method="get">
+            <button class="calendar-button" type="submit">
+                <img src="/images/calendar.png" alt="calendar icon" class="icon">
+            </button>
+        </form>
+
+        <!-- Link to User Plants -->   
+        <form action="/user_plants" method="get">
+            <button class="user-plants-button" type="submit">
+                <img src="/images/plant-list.png" alt="plant list icon" class="icon">
+            </button>
+        </form>
         
         <form action="/logout" method="post" >
             <button type="submit" class="logout-button">
-                <img src="/images/logout.jpg" alt="logout icon">
+                <img src="/images/logout_3.png" alt="logout icon">
             </button>
         </form>
 
