@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.gardeningPlanner.authentication.UserAccountDetails;
 
 @Controller
-public class PlaceholderCalendarController {
+public class PlaceholderCalenderController {
     
-    @GetMapping("/calendar")
+    @GetMapping("/calender")
     public String home(Model model, Authentication authentication,
     @AuthenticationPrincipal UserAccountDetails user) {
         model.addAttribute("message", user.getUsername());
         //System.out.println(user.getUsername());
-        return "placeholder_calendar";
+        return "placeholder_calender";
     }
 }
