@@ -30,7 +30,7 @@ class RegisterController {
 
     private static final String REGISTER_FILENAME = "login_register";
 
-    private static final String CALANDER_FILENAME = "redirect:/calender";
+    private static final String CALANDER_FILENAME = "redirect:/calendar";
 
     private final SecurityContextHolderStrategy securityContextHolderStrategy = SecurityContextHolder
             .getContextHolderStrategy();
