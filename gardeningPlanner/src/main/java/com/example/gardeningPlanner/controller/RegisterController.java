@@ -30,7 +30,7 @@ class RegisterController {
 
     private static final String REGISTER_FILENAME = "login_register";
 
-    private static final String CALANDER_FILENAME = "redirect:/calendar";
+    private static final String CALENDAR_FILENAME = "redirect:/calendar";
 
     private final SecurityContextHolderStrategy securityContextHolderStrategy = SecurityContextHolder
             .getContextHolderStrategy();
@@ -102,7 +102,7 @@ class RegisterController {
         autoLoginNewUser(request, response, usernameTrimmed, password);
 
         // Direct to Home Site
-        return CALANDER_FILENAME;
+        return CALENDAR_FILENAME;
     }
 
     private boolean userAlreadyExistsWith(String username) {

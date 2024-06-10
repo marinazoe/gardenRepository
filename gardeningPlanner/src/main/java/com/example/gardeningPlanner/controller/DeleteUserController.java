@@ -21,14 +21,13 @@ public class DeleteUserController {
     @PostMapping("/user/delete")
     public String deleteUser(Authentication authentication,
             @AuthenticationPrincipal UserAccountDetails user) {
-        // Authentication authentication =
-        // SecurityContextHolder.getContext().getAuthentication();
-        // String currentUsername = authentication.getName();
+
         var userDeletion = iUserRepository.findById(user.getId());
+        
         if (userDeletion.isPresent()) {
             if (userDeletion.get().getUsername().equals(user.getUsername())) {
                 try {
-                    iUserRepository.deleteById(user.getId());
+                    iUserRepository.deleteById(userDeletion.get().getId());
                     SecurityContextHolder.clearContext(); // Benutzer abmelden
                     // return "User Account erfolgreich gelöscht";
                     return "redirect:/login";
