@@ -28,6 +28,7 @@
 
     <div class="action-icons">
         
+        <!-- Delete Account -->
         <form id="deleteForm" action="/user/delete" method="post" class="icon">
             <input type="hidden" name="id" th:value="${userId}">
             <button type="submit" class="delete-button">
@@ -49,12 +50,12 @@
             </button>
         </form>
         
+        <!-- Logout -->
         <form action="/logout" method="post" >
             <button type="submit" class="logout-button">
                 <img src="/images/logout_3.png" alt="logout icon">
             </button>
         </form>
-
 
     </div>
 

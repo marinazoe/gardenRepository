@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Plants</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>Meine Pflanzen</h1>
+
+    
+    <div class="action-icons">
+
+        <!-- Delete User -->
+        <form id="deleteForm" action="/user/delete" method="post" class="icon">
+            <input type="hidden" name="id" th:value="${userId}">
+            <button type="submit" class="delete-button">
+                <img src="/images/delete-account-3.png" alt="delete-account icon" class="icon">
+            </button>
+        </form>
+        
+        <!-- Calendar Site-->
+        <form action="/calendar" method="get">
+            <button class="calendar-button" type="submit">
+                <img src="/images/calendar.png" alt="calendar icon" class="icon">
+            </button>
+        </form>
+
+        <!-- Link to Plant List -->
+        <form action="/plant_list" method="get">
+            <button class="plant-list-button" type="submit">
+                <img src="/images/plant-shop.png" alt="delete-account icon" class="icon">
+            </button>
+        </form>
+        
+        <!-- Logout -->
+        <form action="/logout" method="post">
+            <button type="submit" class="logout-button">
+                <img src="/images/logout_3.png" alt="logout icon">
+            </button>
+        </form>
+    </div>
+
+    <!-- Show User Plants -->
+    <div class="user-plants-list">
+        <div class="user-plants-item" th:each="userPlant : ${userPlants}">
+            <details>
+                <summary th:text="${userPlant.plant.name}">Plant Name</summary>
+
+                <div class="plant-details">
+                    <div class="delete-plant">
+                        <form action="/delete_plant" method="post" class="icon">
+                            <button class="delete-plant-button" type=submit name="userPlantId" th:value="${userPlant.id}">
+                                <img src="/images/delete-plant.png" alt="delete-plant icon" class="icon">
+                            </button>
+                        </form>
+                    </div>
+    
+                    <p><strong>Spitzname:</strong> <span th:text="${userPlant.nickname}"></span></p>
+                    <p><strong>Pflanzenart:</strong> <span th:text="${userPlant.plant.name}"></span></p>
+                    <p><strong>Lieblingsplatz:</strong> <span th:text="${userPlant.plant.spot}"></span></p>
+                    <p><strong>Lieblingstemperatur:</strong> <span th:text="${userPlant.plant.temperature}"></span>°C</p>
+                    <p><strong>Durst:</strong></p>
+                    <p>Sommer: <span th:text="${userPlant.plant.water_summer}"></span>x monatlich</p>                        <p>Winter: <span th:text="${userPlant.plant.water_winter}"></span>x monatlich</p>
+                    <p><strong>Düngen:</strong></p>
+                    <p>Sommer: <span th:text="${userPlant.plant.fertilize_summer}"></span>x monatlich</p>
+                    <p>Winter: <span th:text="${userPlant.plant.fertilize_winter}"></span>x monatlich</p>
+                    <p><strong>Luftfeuchtigkeit:</strong> <span th:text="${userPlant.plant.humidity}"></span>%</p>
+                    <p><strong>Notizen:</strong></p>
+                    <textarea readonly th:text="${userPlant.notes}"></textarea>
+                 
+                </div>
+            </details>
+        </div>
+    </div>
+</body>
+</html>

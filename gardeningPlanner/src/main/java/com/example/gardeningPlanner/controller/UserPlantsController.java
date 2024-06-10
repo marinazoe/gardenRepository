@@ -20,7 +20,7 @@ public class UserPlantsController {
 
     private static final String USER_PLANTS_ENDPOINT = "/user_plants";
 
-    private static final String USER_PLANTS_FILENAME = "placeholder_user_plants";
+    private static final String USER_PLANTS_FILENAME = "user_plants";
     
     private IUserRepository iUserRepository;
     private IUserPlantRepository iUserPlantRepository;
