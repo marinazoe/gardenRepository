@@ -9,15 +9,7 @@
 </head>
 
 <body>
-
     <h1>Plant List</h1>
-    <!-- Showing Plants and Adding Button -->
-    <tr th:each="entry : ${list}">
-        <td><span th:text="${entry.name}"> Name </span></td>
-        <td><form action="/add_Plant" method="post">
-            <button type="submit" name="plantId" th:value="${entry.id}">Add</button>
-        </form></td>
-    </tr>
 
     <div class="row">
         <div class="card-column" th:each="entry:${list}">
@@ -35,6 +27,7 @@
     </div>
 
     <div class="action-icons">
+        
         <form id="deleteForm" action="/user/delete" method="post" class="icon">
             <input type="hidden" name="id" th:value="${userId}">
             <button type="submit" class="delete-button">
@@ -43,7 +36,7 @@
         </form>
         
         <!-- Calender Site-->
-        <form action="/calender" method="get">
+        <form action="/calendar" method="get">
             <button class="calendar-button" type="submit">
                 <img src="/images/calendar.png" alt="calendar icon" class="icon">
             </button>
@@ -58,9 +51,10 @@
         
         <form action="/logout" method="post" >
             <button type="submit" class="logout-button">
-                <img src="/images/logout.jpg" alt="logout icon">
+                <img src="/images/logout_3.png" alt="logout icon">
             </button>
         </form>
+
 
     </div>
 
