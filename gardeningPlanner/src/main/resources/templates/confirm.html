@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account löschen bestätigen</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form">
+            <h1>Account löschen bestätigen</h1>
+            <p>Möchten Sie Ihren Account wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.</p>
+            <form action="/user/delete" method="post">
+                <input type="submit" value="Ja, löschen" style="align-items: center;"></button>
+            </form>
+
+            <!-- Form zum Abbrechen der Löschung -->
+            <form action="/calendar" method="get">
+                <input type="submit" value="Nein, behalten"></button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

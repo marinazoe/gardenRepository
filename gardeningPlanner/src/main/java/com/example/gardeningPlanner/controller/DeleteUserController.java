@@ -4,6 +4,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.gardeningPlanner.Repositories.IUserRepository;
@@ -18,12 +20,17 @@ public class DeleteUserController {
         this.iUserRepository = iUserRepository;
     }
 
+    @GetMapping("/confirm")
+    public String confrimDelete(Model model) {
+        return "confirm";
+    }
+
     @PostMapping("/user/delete")
     public String deleteUser(Authentication authentication,
             @AuthenticationPrincipal UserAccountDetails user) {
 
         var userDeletion = iUserRepository.findById(user.getId());
-        
+
         if (userDeletion.isPresent()) {
             if (userDeletion.get().getUsername().equals(user.getUsername())) {
                 try {
