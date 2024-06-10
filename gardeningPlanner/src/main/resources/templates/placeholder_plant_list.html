@@ -9,7 +9,15 @@
 </head>
 
 <body>
+
     <h1>Plant List</h1>
+    <!-- Showing Plants and Adding Button -->
+    <tr th:each="entry : ${list}">
+        <td><span th:text="${entry.name}"> Name </span></td>
+        <td><form action="/add_Plant" method="post">
+            <button type="submit" name="plantId" th:value="${entry.id}">Add</button>
+        </form></td>
+    </tr>
 
     <div class="row">
         <div class="card-column" th:each="entry:${list}">
@@ -50,7 +58,7 @@
         
         <form action="/logout" method="post" >
             <button type="submit" class="logout-button">
-                <img src="/images/logout_3.png" alt="logout icon">
+                <img src="/images/logout.jpg" alt="logout icon">
             </button>
         </form>
 

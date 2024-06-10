@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Planner</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <h1 th:text="${message}"></h1>
+    
+    
+    <!-- Logout & delete Account -->
+    <div class="action-icons">
+
+        <form id="deleteForm" action="/user/delete" method="post" class="icon">
+            <input type="hidden" name="id" th:value="${userId}">
+            <button type="submit" class="delete-button">
+                <img src="/images/delete-account-3.png" alt="delete-account icon" class="icon">
+            </button>
+        </form>
+        
+        <!-- Link to Plant List -->
+        <form action="/plant_list" method="get">
+            <button class="plant-list-button" type="submit">
+                <img src="/images/plant-shop.png" alt="delete-account icon" class="icon">
+            </button>
+        </form>
+
+        <!-- Link to User Plants -->   
+        <form action="/user_plants" method="get">
+            <button class="user-plants-button" type="submit">
+                <img src="/images/plant-list.png" alt="delete-account icon" class="icon">
+            </button>
+        </form>
+        
+        <form action="/logout" method="post" >
+            <button type="submit" class="logout-button">
+                <img src="/images/logout_3.png" alt="logout icon">
+            </button>
+        </form>
+
+
+    </div>
+
+</body>
+
+</html>
