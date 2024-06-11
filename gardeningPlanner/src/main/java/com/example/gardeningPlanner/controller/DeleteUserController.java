@@ -21,7 +21,7 @@ public class DeleteUserController {
     }
 
     @GetMapping("/confirm")
-    public String confrimDelete(Model model) {
+    public String confirmDelete(Model model) {
         return "confirm";
     }
 
