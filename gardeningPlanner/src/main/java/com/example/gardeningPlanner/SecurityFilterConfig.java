@@ -19,7 +19,7 @@ public class SecurityFilterConfig {
         permitH2Console(http);
 
         http.csrf(csrf -> csrf.disable()).authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/", "/home", "/css/*", "/register", "/images/*", "/error").permitAll()
+                .requestMatchers("/css/*", "/register", "/images/*", "/error").permitAll()
                 .anyRequest().authenticated())
                 .formLogin((form) -> form
                         .loginPage("/login")
