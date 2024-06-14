@@ -14,19 +14,27 @@ import com.example.gardeningPlanner.authentication.UserAccountDetails;
 @Controller
 public class DeleteUserController {
 
+    private static final String DELETE_USER_ENDPOINT = "/deleteUser";
+
+    private static final String DELETE_USER_FILENAME = "deleteUser";
+
+    private static final String REDIRECT = "redirect:";
+
+    private static final String LOGIN_ENDPOINT = "/login";
+
     private IUserRepository iUserRepository;
 
     public DeleteUserController(IUserRepository iUserRepository) {
         this.iUserRepository = iUserRepository;
     }
 
-    @GetMapping("/confirm")
+    @GetMapping(DELETE_USER_ENDPOINT)
     public String confirmDelete(Model model) {
-        return "confirm";
+        return DELETE_USER_FILENAME;
     }
 
-    @PostMapping("/user/delete")
-    public String deleteUser(Authentication authentication,
+    @PostMapping(DELETE_USER_ENDPOINT)
+    public String deleteUser(Model model, Authentication authentication,
             @AuthenticationPrincipal UserAccountDetails user) {
 
         var userDeletion = iUserRepository.findById(user.getId());
@@ -36,16 +44,18 @@ public class DeleteUserController {
                 try {
                     iUserRepository.deleteById(userDeletion.get().getId());
                     SecurityContextHolder.clearContext(); // Benutzer abmelden
-                    // return "User Account erfolgreich gelöscht";
-                    return "redirect:/login";
+                    return REDIRECT + LOGIN_ENDPOINT;
                 } catch (Exception e) {
-                    return "Fehler beim Löschen des Accounts: " + e.getMessage();
+                    model.addAttribute("error", e.getMessage());
+                    return DELETE_USER_FILENAME;
                 }
             } else {
-                return "Fehler: Unberechtigte Anfrage";
+                model.addAttribute("error", "Fehler: Unberechtigte Anfrage");
+                return DELETE_USER_FILENAME;
             }
         } else {
-            return "Fehler: Benutzer nicht gefunden";
+            model.addAttribute("error", "Fehler: Benutzer nicht gefunden");
+            return DELETE_USER_FILENAME;
         }
     }
 }
