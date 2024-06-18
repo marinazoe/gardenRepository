@@ -40,19 +40,24 @@
             <div class="dates">
                 <ul th:each="dayInfo : ${monthInfos}">
                     <li class="card">
-                        <table>
-                            <tr style="width: 100%;">
-                                <td class="calendar-card-column date">
-                                    <span style="margin-left: 5px;" th:if="${dayInfo.day != 0}" th:text="${dayInfo.day}"></span>
-                                </td>
-                                <td class="calendar-card-column icon">
+                        <div class="calendar-card-content">
+                            <div class="calendar-date">
+                                <div>
+                                    <span th:if="${dayInfo.day != 0}" th:text="${dayInfo.day}"></span>
+                                </div>
+                                <div class="additional-info">
+                                    <!-- Add any additional information here -->
+                                </div>
+                            </div>
+                            <div class="calendar-icons">
+                                <div class="calendar-icon-column">
                                     <img class="calendar-icon" th:if="${dayInfo.plantsToWater.size() > 0}" src="/images/water.png">
-                                </td>
-                                <td class="calendar-card-column icon">
+                                </div>
+                                <div class="calendar-icon-column">
                                     <img class="calendar-icon" th:if="${dayInfo.plantsToFertilize.size() > 0}" src="/images/fertilize.png">
-                                </td>
-                            </tr>
-                        </table>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>

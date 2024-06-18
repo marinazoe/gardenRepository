@@ -226,21 +226,43 @@ p, h2, h3, h4, h5, h6, summary {
     color: #0b1a0b;
 }
 
-.calendar-card-column {
-    vertical-align: top;
+.calendar-card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
 }
 
-.calendar-card-column .date {
-    width: 24%;
+.calendar-date {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30%;
 }
 
-.calendar-card-column .icon {
-    width: 38%;
+.calendar-icons {
+    display: flex;
+    position: relative;
+    gap: 10px;
+    margin-right:50%;
+    margin-bottom: 15%;
 }
 
 .calendar-icon {
-    width: 60px;
-    height: 60px;
+    width: 35px;
+    height: 35px;
+    transition: transform 0.2s;
+}
+
+.calendar-icon:hover {
+    transform: scale(1.5);
+}
+
+.calendar-icon-column {
+    width: 35px;
+    height: 35px;
+    position: relative;
 }
 
 /* month navigation styles */
@@ -288,4 +310,23 @@ p, h2, h3, h4, h5, h6, summary {
 .month-navigation h1 {
     position: relative;
     top: 0;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+    .card-column {
+        width: 33.33%;
+    }
+}
+
+@media (max-width: 992px) {
+    .card-column {
+        width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-column {
+        width: 100%;
+    }
 }
