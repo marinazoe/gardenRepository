@@ -31,12 +31,12 @@ public final class CalendarUtil {
         month = currentDate.getMonth().getValue();
 
         //2 runs, one for the current month and one for the next month
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 6; i++) {
             frequency = calculatefrequency(month, i, frequencyWinter, frequencySummer);
             //Uses the frequencies to calculate the days between actions 
             daysBetweenAction = (int) Math.round((float)frequencyReference / (float)frequency);
             while (calculationDate.plusDays(daysBetweenAction).getMonth().getValue() == month+i) {
-                calculationDate = calculationDate.plusDays(daysBetweenAction);
+                calculationDate = calculationDate.plusDays(daysBetweenAction-1);
                 dates.add(calculationDate);
             }
         }
