@@ -28,7 +28,7 @@ public class CalendarController {
     public record CalenderPlant(String name, String nickname, List<LocalDate> wateringDates, List<LocalDate> fertilizeDates) {}
     public record DayInfo(int day, List<CalenderPlant> plantsToWater, List<CalenderPlant> plantsToFertilize) {}
 
-    private static final String CALENDAR_ENDPOINT = "/calendar";
+    private static final String CALENDAR_ENDPOINT = "/kalender";
 
     private IUserRepository iUserRepository;
     private IUserPlantRepository iUserPlantRepository;

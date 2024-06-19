@@ -15,28 +15,28 @@
     <div class="action-icons">
 
         <!-- Delete User -->
-        <form id="deleteForm" action="/deleteUser" method="get" class="icon">
+        <form id="deleteForm" action="/benutzerLoeschen" method="get" class="icon">
             <button type="submit" class="delete-button">
                 <img src="/images/delete-account-3.png" alt="delete-account icon" class="icon">
             </button>
         </form>
 
         <!-- Calendar Site-->
-        <form action="/calendar" method="get">
+        <form action="/kalender" method="get">
             <button class="calendar-button" type="submit">
                 <img src="/images/calendar.png" alt="calendar icon" class="icon">
             </button>
         </form>
 
         <!-- Link to Plant List -->
-        <form action="/plant_list" method="get">
+        <form action="/pflanzenListe" method="get">
             <button class="plant-list-button" type="submit">
                 <img src="/images/plant-shop.png" alt="delete-account icon" class="icon">
             </button>
         </form>
 
         <!-- Logout -->
-        <form action="/logout" method="post">
+        <form action="/abmelden" method="post">
             <button type="submit" class="logout-button">
                 <img src="/images/logout_3.png" alt="logout icon">
             </button>
@@ -51,7 +51,7 @@
 
                 <div class="plant-details">
                     <div class="delete-plant">
-                        <form action="/delete_plant" method="post" class="icon">
+                        <form action="/pflanzeLoeschen" method="post" class="icon">
                             <button class="delete-plant-button" type=submit name="userPlantId"
                                 th:value="${userPlant.id}">
                                 <img src="/images/delete-plant.png" alt="delete-plant icon" class="icon">

@@ -19,16 +19,16 @@ public class SecurityFilterConfig {
         permitH2Console(http);
 
         http.csrf(csrf -> csrf.disable()).authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/css/*", "/register", "/images/*", "/error").permitAll()
+                .requestMatchers("/css/*", "/registrierung", "/images/*", "/error").permitAll()
                 .anyRequest().authenticated())
                 .formLogin((form) -> form
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/calendar", true)
-                        .failureUrl("/login?error=true")
+                        .loginPage("/anmeldung")
+                        .defaultSuccessUrl("/kalender", true)
+                        .failureUrl("/annmeldung?error=true")
                         .permitAll())
                 .logout((logout) -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout=true")
+                        .logoutUrl("/abmelden")
+                        .logoutSuccessUrl("/anmeldung?abmelden=true")
                         .permitAll());
 
         return http.build();

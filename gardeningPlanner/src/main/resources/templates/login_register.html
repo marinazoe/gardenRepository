@@ -14,7 +14,7 @@
 
         <div class="form register">
             <h2>Registrieren</h2>
-            <form action="/register" method="post">
+            <form action="/registrierung" method="post">
                 <label for="register-username">Benutzername:</label>
                 <input type="text" id="register-username" name="username" required>
 
@@ -48,7 +48,7 @@
 
         <div class="form login">
             <h2>Anmelden</h2>
-            <form action="/login" method="post">
+            <form action="/anmeldung" method="post">
                 <label for="login-username">Benutzername:</label>
                 <input type="text" id="login-username" name="username" required>
 
@@ -61,7 +61,7 @@
             <div th:if="${error}">
                 Falscher Benutzername oder falsches Passwort.
             </div>
-            <div th:if="${logout}">
+            <div th:if="${abmelden}">
                 Sie sind abgemeldet.
             </div>
             </p>

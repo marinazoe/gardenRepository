@@ -11,14 +11,14 @@
 <body>
     <div class="calendar">
         <div class="month-navigation">
-            <form action="/calendar" method="get" class="prev-button">
+            <form action="/kalender" method="get" class="prev-button">
                 <input type="hidden" name="monthOffset" th:value="${monthOffset - 1}">
                 <button type="submit">
                     <img style="height:100%" src="/images/previous.png" alt="previous-icon" class="icon">
                 </button>
             </form>
             <h1 th:text="${monthName}"></h1>
-            <form action="/calendar" method="get" class="next-button">
+            <form action="/kalender" method="get" class="next-button">
                 <input type="hidden" name="monthOffset" th:value="${monthOffset + 1}">
                 <button type="submit">
                     <img style="height:100%" src="/images/next.png" alt="next-icon" class="icon">
@@ -64,25 +64,25 @@
         </div>
     </div>
     <div class="action-icons">
-        <form id="deleteForm" action="/deleteUser" method="get" class="icon">
+        <form id="deleteForm" action="/benutzerLoeschen" method="get" class="icon">
             <button type="submit" class="delete-button">
                 <img src="/images/delete-account-3.png" alt="delete-account icon" class="icon">
             </button>
         </form>
 
-        <form action="/plant_list" method="get">
+        <form action="/pflanzenListe" method="get">
             <button class="plant-list-button" type="submit">
                 <img src="/images/plant-shop.png" alt="delete-account icon" class="icon">
             </button>
         </form>
 
-        <form action="/user_plants" method="get">
+        <form action="/benutzerPflanzen" method="get">
             <button class="user-plants-button" type="submit">
                 <img src="/images/plant-list.png" alt="delete-account icon" class="icon">
             </button>
         </form>
 
-        <form action="/logout" method="post">
+        <form action="/abmelden" method="post">
             <button type="submit" class="logout-button">
                 <img src="/images/logout_3.png" alt="logout icon">
             </button>

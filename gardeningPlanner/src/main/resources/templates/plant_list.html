@@ -14,7 +14,7 @@
     <div class="row">
         <div class="card-column" th:each="entry:${list}">
             <div class="card">
-                <form action="/add_Plant" method="post">
+                <form action="/pflanzeHinzufuegen" method="post">
                     <p class="card-title" th:text="${entry.name}"></p>
                     <button class="add-button" type="submit" name="plantId" th:value="${entry.id}">
                         <img style="height:100%" src="/images/add_plant.png" alt="add-plant-icon" class="icon">
@@ -26,28 +26,28 @@
 
     <div class="action-icons">
         <!-- Delete Account -->
-        <form id="deleteForm" action="/deleteUser" method="get" class="icon">
+        <form id="deleteForm" action="/benutzerLoeschen" method="get" class="icon">
             <button type="submit" class="delete-button">
                 <img src="/images/delete-account-3.png" alt="delete-account icon" class="icon">
             </button>
         </form>
 
         <!-- Calendar Site-->
-        <form action="/calendar" method="get">
+        <form action="/kalender" method="get">
             <button class="calendar-button" type="submit">
                 <img src="/images/calendar.png" alt="calendar icon" class="icon">
             </button>
         </form>
 
         <!-- Link to User Plants -->
-        <form action="/user_plants" method="get">
+        <form action="/benutzerPflanzen" method="get">
             <button class="user-plants-button" type="submit">
                 <img src="/images/plant-list.png" alt="plant list icon" class="icon">
             </button>
         </form>
 
         <!-- Logout -->
-        <form action="/logout" method="post">
+        <form action="/abmelden" method="post">
             <button type="submit" class="logout-button">
                 <img src="/images/logout_3.png" alt="logout icon">
             </button>

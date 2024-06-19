@@ -14,13 +14,13 @@ import com.example.gardeningPlanner.authentication.UserAccountDetails;
 @Controller
 public class DeleteUserController {
 
-    private static final String DELETE_USER_ENDPOINT = "/deleteUser";
+    private static final String DELETE_USER_ENDPOINT = "/benutzerLoeschen";
 
     private static final String DELETE_USER_FILENAME = "deleteUser";
 
     private static final String REDIRECT = "redirect:";
 
-    private static final String LOGIN_ENDPOINT = "/login";
+    private static final String LOGIN_ENDPOINT = "/anmeldung";
 
     private IUserRepository iUserRepository;
 

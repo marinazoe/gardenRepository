@@ -19,11 +19,11 @@ import com.example.gardeningPlanner.authentication.UserAccountDetails;
 @Controller
 public class UserPlantsController {
 
-    private static final String USER_PLANTS_ENDPOINT = "/user_plants";
+    private static final String USER_PLANTS_ENDPOINT = "/benutzerPflanzen";
 
     private static final String USER_PLANTS_FILENAME = "user_plants";
 
-    private static final String USER_PLANTS_DELETION_ENDPOINT = "/delete_plant";
+    private static final String USER_PLANTS_DELETION_ENDPOINT = "/pflanzeLoeschen";
 
     private static final String REDIRECT = "redirect:";
     

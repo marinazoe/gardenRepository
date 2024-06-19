@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 public class LoginController {
 
-    private static final String LOGIN_ENDPOINT = "/login";
+    private static final String LOGIN_ENDPOINT = "/anmeldung";
 
     private static final String LOGIN_FILENAME = "login_register";
 
@@ -24,7 +24,7 @@ public class LoginController {
         return LOGIN_FILENAME;
     }
 
-    @GetMapping(value = LOGIN_ENDPOINT, params = {"!error", "logout=true"})
+    @GetMapping(value = LOGIN_ENDPOINT, params = {"!error", "abmelden=true"})
     public String logout(HttpServletRequest request, Model model) {
         model.addAttribute("logout", true); // true: For Logout Message
         return LOGIN_FILENAME;

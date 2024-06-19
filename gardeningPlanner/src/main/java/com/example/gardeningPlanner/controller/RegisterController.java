@@ -26,7 +26,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @Controller
 class RegisterController {
 
-    private static final String REGISTER_ENDPOINT = "/register";
+    private static final String REGISTER_ENDPOINT = "/registrierung";
 
     private static final String REGISTER_FILENAME = "login_register";
 

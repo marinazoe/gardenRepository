@@ -22,13 +22,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class PlantListController {
 
-    private static final String PLANT_LIST_ENDPOINT = "/plant_list";
+    private static final String PLANT_LIST_ENDPOINT = "/pflanzenListe";
 
     private static final String PLANT_LIST_FILENAME = "plant_list";
     
-    private static final String ADD_PLANT_ENDPOINT = "/add_Plant";
+    private static final String ADD_PLANT_ENDPOINT = "/pflanzeHinzufuegen";
 
-    private static final String PLANT_LIST_REDIRECT = "redirect:/plant_list";
+    private static final String PLANT_LIST_REDIRECT = "redirect:/pflanzenListe";
 
     private IPlantRepository iPlantRepository;
     private IUserRepository iUserRepository;
