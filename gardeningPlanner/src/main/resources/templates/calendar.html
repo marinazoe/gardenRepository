@@ -51,10 +51,14 @@
                             </div>
                             <div class="calendar-icons">
                                 <div class="calendar-icon-column">
-                                    <img class="calendar-icon" th:if="${dayInfo.plantsToWater.size() > 0}" src="/images/water.png">
+                                    <img class="calendar-icon" th:if="${dayInfo.plantsToWater.size() > 0}" 
+                                    src="/images/water.png"
+                                    th:title="${#strings.listJoin(dayInfo.plantsToWater.![name], ', ')}">
                                 </div>
                                 <div class="calendar-icon-column">
-                                    <img class="calendar-icon" th:if="${dayInfo.plantsToFertilize.size() > 0}" src="/images/fertilize.png">
+                                    <img class="calendar-icon" th:if="${dayInfo.plantsToFertilize.size() > 0}" 
+                                    src="/images/fertilize.png"
+                                    th:title="${#strings.listJoin(dayInfo.plantsToFertilize.![name], ', ')}">
                                 </div>
                             </div>
                         </div>
@@ -82,7 +86,7 @@
             </button>
         </form>
 
-        <form action="/abmelden" method="post">
+        <form action="/logout" method="post">
             <button type="submit" class="logout-button">
                 <img src="/images/logout_3.png" alt="logout icon">
             </button>
