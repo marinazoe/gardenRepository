@@ -27,7 +27,7 @@ public class SecurityFilterConfig {
                         .failureUrl("/anmeldung?error=true")
                         .permitAll())
                 .logout((logout) -> logout
-                        .logoutUrl("/logout")
+                        .logoutUrl("/abmelden")
                         .logoutSuccessUrl("/anmeldung?abmelden=true")
                         .permitAll());
 

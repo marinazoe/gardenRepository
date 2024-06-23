@@ -59,10 +59,10 @@
             </form>
             <p>
             <div th:if="${error}">
-                Falscher Benutzername oder falsches Passwort.
+                <div th:text="${error}"></div>
             </div>
-            <div th:if="${abmelden}">
-                Sie sind abgemeldet.
+            <div th:if="${logout}">
+                <div th:text="${logout}"></div>
             </div>
             </p>
         </div>
