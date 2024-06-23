@@ -24,10 +24,10 @@ public class SecurityFilterConfig {
                 .formLogin((form) -> form
                         .loginPage("/anmeldung")
                         .defaultSuccessUrl("/kalender", true)
-                        .failureUrl("/annmeldung?error=true")
+                        .failureUrl("/anmeldung?error=true")
                         .permitAll())
                 .logout((logout) -> logout
-                        .logoutUrl("/abmelden")
+                        .logoutUrl("/logout")
                         .logoutSuccessUrl("/anmeldung?abmelden=true")
                         .permitAll());
 
