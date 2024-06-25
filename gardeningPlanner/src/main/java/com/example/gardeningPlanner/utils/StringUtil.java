@@ -4,12 +4,6 @@ import java.util.regex.*;
 
 public final class StringUtil {
 
-    /*
-     * Utilities file
-     */
-    private StringUtil() {
-    }
-
     public static boolean isEmpty(String value) {
         return value == null || value.isBlank();
     }

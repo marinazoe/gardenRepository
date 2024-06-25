@@ -21,7 +21,7 @@ public final class CalendarUtil {
 
         //Skips from the date the plant was added to then current date while keeping the same cycle
         while (calculationDate.plusDays(daysBetweenAction).isBefore(currentDate)){
-            calculationDate = calculationDate.plusDays(daysBetweenAction);
+            calculationDate = calculationDate.plusDays(daysBetweenAction-1);
             month = calculationDate.getMonth().getValue();
             frequency = calculatefrequency(month, 0, frequencyWinter, frequencySummer);
             daysBetweenAction = (int) Math.round((float)frequencyReference / (float)frequency);
@@ -30,7 +30,7 @@ public final class CalendarUtil {
         //Update to current month
         month = currentDate.getMonth().getValue();
 
-        //2 runs, one for the current month and one for the next month
+        //i defines how many months should be calculated
         for (int i = 0; i < 6; i++) {
             frequency = calculatefrequency(month, i, frequencyWinter, frequencySummer);
             //Uses the frequencies to calculate the days between actions 
@@ -43,11 +43,11 @@ public final class CalendarUtil {
         return dates;
     }
     
-    private static int calculatefrequency(int month, int i, int frequencyWinter, int frequencySummer ){
+    private static int calculatefrequency(int month, int counter, int frequencyWinter, int frequencySummer ){
         //Assuming winter starts in November and summer starts in May
         int winterBeginningMonth = 11;
         int summerBeginningMonth = 5;
-        if (month+i >= winterBeginningMonth || month+i < summerBeginningMonth) {
+        if (month+counter >= winterBeginningMonth || month+counter < summerBeginningMonth) {
             return frequencyWinter;
         } else {
             return frequencySummer;
