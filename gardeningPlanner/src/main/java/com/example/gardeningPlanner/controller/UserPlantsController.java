@@ -25,6 +25,10 @@ public class UserPlantsController {
 
     private static final String USER_PLANTS_DELETION_ENDPOINT = "/pflanzeLoeschen";
 
+    private static final String USER_PLANT_CHANGE_NICKNAME = "/pflanzeumbennen";
+
+    private static final String USER_PLANT_EDIT_NOTES = "/pflanzennotizen";
+
     private static final String REDIRECT = "redirect:";
     
     private IUserRepository iUserRepository;
@@ -57,12 +61,34 @@ public class UserPlantsController {
         var plantDeletion = getUserPlant(userPlantId);
         try {
             iUserPlantRepository.deleteById(plantDeletion.getId());
-            return REDIRECT + USER_PLANTS_ENDPOINT;
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
-            return REDIRECT + USER_PLANTS_ENDPOINT;
         }
+        return REDIRECT + USER_PLANTS_ENDPOINT;
     }
+
+    @PostMapping(USER_PLANT_CHANGE_NICKNAME)
+    public String changeNickname(Model model, int userPlantId, String nickname){
+        var plant = getUserPlant(userPlantId);
+        try {
+            iUserPlantRepository.updateNicknameById(nickname, plant.getId());
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+        }
+        return REDIRECT + USER_PLANTS_ENDPOINT;
+    }
+
+    @PostMapping(USER_PLANT_EDIT_NOTES)
+    public String editNotes(Model model, int userPlantId, String notes){
+        var plant = getUserPlant(userPlantId);
+        try {
+            iUserPlantRepository.updateNotesById(notes, plant.getId());
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+        }
+        return REDIRECT + USER_PLANTS_ENDPOINT;
+    }
+
 
     private UserAccount getCurrentUser(UserAccountDetails user) {
         return iUserRepository.findById(user.getId()).orElseThrow(NoSuchElementException::new);

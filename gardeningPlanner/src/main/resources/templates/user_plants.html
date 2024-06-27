@@ -58,8 +58,17 @@
                             </button>
                         </form>
                     </div>
-
-                    <p><strong>Spitzname:</strong> <span th:text="${userPlant.nickname}"></span></p>
+                    <form action="/pflanzeumbennen" method="post" class="icon">
+                        <div class="save-nickname">
+                            <button class="plant-save-button" type=submit name="userPlantId"
+                                th:value="${userPlant.id}">
+                                <img src="/images/save.png" alt="save icon" class="icon">
+                            </button>
+                        </div>
+                        <p><strong>Spitzname:</strong>
+                            <textarea class="nickname-area" id="nickname" name="nickname" th:value="*{nickname}"  th:text="${userPlant.nickname}"></textarea></p>
+                    </form>
+                    
                     <p><strong>Pflanzenart:</strong> <span th:text="${userPlant.plant.name}"></span></p>
                     <p><strong>Lieblingsplatz:</strong> <span th:text="${userPlant.plant.spot}"></span></p>
                     <p><strong>Lieblingstemperatur:</strong> <span th:text="${userPlant.plant.temperature}"></span>°C
@@ -72,8 +81,15 @@
                     <p>Winter: <span th:text="${userPlant.plant.fertilize_winter}"></span>x monatlich</p>
                     <p><strong>Luftfeuchtigkeit:</strong> <span th:text="${userPlant.plant.humidity}"></span>%</p>
                     <p><strong>Notizen:</strong></p>
-                    <textarea readonly th:text="${userPlant.notes}"></textarea>
-
+                    <form action="/pflanzennotizen" method="post" class="icon">
+                        <textarea id="notes" name="notes" th:value="*{notes}" th:text="${userPlant.notes}"></textarea>
+                        <div class="save-note">
+                            <button class="delete-plant-button" type=submit name="userPlantId"
+                                th:value="${userPlant.id}">
+                                <img src="/images/save.png" alt="save icon" class="icon">
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </details>
         </div>

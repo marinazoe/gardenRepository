@@ -57,7 +57,7 @@ label {
     gap: 10px;
 }
 
-.logout-button, .delete-button, .plant-list-button, .user-plants-button, .calendar-button, .delete-plant-button {
+.logout-button, .delete-button, .plant-list-button, .user-plants-button, .calendar-button, .delete-plant-button, .plant-save-button {
     background: none;
     border: none;
     cursor: pointer;
@@ -172,13 +172,34 @@ textarea {
     padding: 5px;
 }
 
+.nickname-area {
+    width: 30%;
+    height: 20px;
+    padding: 0px;
+    position: absolute;
+    top: 20px;
+    left: 7%;
+}
+
 .delete-plant {
     position: absolute;
     top: 15px;
     right: 10px;
 }
 
-.delete-plant-button img {
+.save-note {
+    position: absolute;
+    top: 380px;
+    right: 10px;
+}
+
+.save-nickname {
+    position: absolute;
+    top: 18px;
+    left: 38%;
+}
+
+.delete-plant-button img, .plant-save-button img {
     width: 24px;
     height: 24px;
 }
