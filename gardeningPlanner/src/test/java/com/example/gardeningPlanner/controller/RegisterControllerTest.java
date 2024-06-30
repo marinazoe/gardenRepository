@@ -39,7 +39,7 @@ public class RegisterControllerTest {
     private PasswordEncoder passwordEncoder;
 
     @Test
-    public void testSuccessfulRegistration2() throws Exception {
+    public void testSuccessfulRegistration() throws Exception {
 
         // Arrange
         when(userRepository.findByUsername("newUser")).thenReturn(Optional.empty());
@@ -66,23 +66,23 @@ public class RegisterControllerTest {
     @Test
     public void testRegistrationWithExistingUser() throws Exception {
 
-        //Arrange
-        UserAccount mockUserAccount = mock(UserAccount.class);
-        when(mockUserAccount.getUsername()).thenReturn("existingUser");
-        when(userRepository.findByUsername("existingUser")).thenReturn(Optional.of(mockUserAccount));
+        // Arrange
+        UserAccount existingUser = new UserAccount("existingUser", "password", "existinguser@example.com");
+        when(userRepository.findByUsername("existingUser")).thenReturn(Optional.of(existingUser));
 
-        //Act
+        // Act
         mockMvc.perform(post("/registrierung")
                 .param("username", "existingUser")
                 .param("password", "password123")
                 .param("password2", "password123")
                 .param("email", "existinguser@example.com"))
 
-            //Assert
+            // Assert
             .andExpect(status().isOk())
             .andExpect(view().name("login_register"))
             .andExpect(model().attribute("used", true));
     }
+
 
     @Test
     public void testRegistrationWithPasswordMismatch() throws Exception {
@@ -114,6 +114,26 @@ public class RegisterControllerTest {
             .andExpect(status().isOk())
             .andExpect(view().name("login_register"))
             .andExpect(model().attribute("email", true));
+    }
+
+    @Test
+    public void testRegistrationWithAlreadyExistingUsername() throws Exception {
+
+        // Arrange
+        UserAccount existingUser = new UserAccount("existingUser", "encodedPassword", "existinguser@example.com");
+        when(userRepository.findByUsername("existingUser")).thenReturn(Optional.of(existingUser));
+
+        // Act
+        mockMvc.perform(post("/registrierung")
+                .param("username", "existingUser")
+                .param("password", "password123")
+                .param("password2", "password123")
+                .param("email", "existinguser@example.com"))
+
+        // Assert
+            .andExpect(status().isOk())
+            .andExpect(view().name("login_register"))
+            .andExpect(model().attribute("used", true));
     }
 
 }
