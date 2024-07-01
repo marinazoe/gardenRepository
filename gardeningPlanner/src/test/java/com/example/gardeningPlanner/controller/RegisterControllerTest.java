@@ -1,10 +1,13 @@
 package com.example.gardeningPlanner.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static com.example.gardeningPlanner.SecurityMockMvc.HttpMethod.GET;
+import static org.assertj.core.api.Assertions.assertThat;
+import static com.example.gardeningPlanner.UserAccountDetailsTestUtil.createMockUser;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 
 import java.util.Optional;
 
@@ -21,13 +24,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.example.gardeningPlanner.SecurityFilterConfig;
+import com.example.gardeningPlanner.SecurityMockMvc;
 import com.example.gardeningPlanner.Repositories.IUserRepository;
 import com.example.gardeningPlanner.Tables.UserAccount;
 import com.example.gardeningPlanner.authentication.AuthentificationConfig;
 
 @Import({SecurityFilterConfig.class, AuthentificationConfig.class, H2ConsoleProperties.class})
 @WebMvcTest(RegisterController.class)
-public class RegisterControllerTest {
+public class RegisterControllerTest extends SecurityMockMvc{
 
     @Autowired
     private MockMvc mockMvc;
@@ -37,6 +41,26 @@ public class RegisterControllerTest {
 
     @MockBean
     private PasswordEncoder passwordEncoder;
+
+
+    @Test
+    void testNonAuthenticatedUserCanRegister() throws Exception{
+        // Arrange and Act
+        var html = html200From(request(GET, "/registrierung"));
+
+        // Assert
+        assertThat(html).contains("Registrieren", "Benutzername", "Passwort", "Email", "Passwort erneut eingeben");
+    }
+
+    @Test
+    void testAuthenticatedUserCanRegister() throws Exception{
+        // Arrange and Act
+        var mockUser = createMockUser("mockUser", "mock@email.test");
+        var html = html200From(request(GET, "/registrierung").with(user(mockUser)));
+
+        // Assert
+        assertThat(html).contains("Registrieren", "Benutzername", "Passwort", "Email", "Passwort erneut eingeben");
+    }
 
     @Test
     public void testSuccessfulRegistration() throws Exception {
