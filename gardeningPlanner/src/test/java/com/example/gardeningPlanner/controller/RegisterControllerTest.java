@@ -55,7 +55,6 @@ public class RegisterControllerTest {
 
             //Assert
             .andExpect(status().is3xxRedirection());
-            //.andExpect(redirectedUrl("http://localhost/kalender"));
 
         verify(userRepository,atLeastOnce()).findByUsername("newUser");
         verify(passwordEncoder, times(1)).encode("password123");
@@ -64,7 +63,7 @@ public class RegisterControllerTest {
 
 
     @Test
-    public void testRegistrationWithExistingUser() throws Exception {
+    public void testRegistrationWithAlreadyExistingUser() throws Exception {
 
         // Arrange
         UserAccount existingUser = new UserAccount("existingUser", "password", "existinguser@example.com");
@@ -114,26 +113,6 @@ public class RegisterControllerTest {
             .andExpect(status().isOk())
             .andExpect(view().name("login_register"))
             .andExpect(model().attribute("email", true));
-    }
-
-    @Test
-    public void testRegistrationWithAlreadyExistingUsername() throws Exception {
-
-        // Arrange
-        UserAccount existingUser = new UserAccount("existingUser", "encodedPassword", "existinguser@example.com");
-        when(userRepository.findByUsername("existingUser")).thenReturn(Optional.of(existingUser));
-
-        // Act
-        mockMvc.perform(post("/registrierung")
-                .param("username", "existingUser")
-                .param("password", "password123")
-                .param("password2", "password123")
-                .param("email", "existinguser@example.com"))
-
-        // Assert
-            .andExpect(status().isOk())
-            .andExpect(view().name("login_register"))
-            .andExpect(model().attribute("used", true));
     }
 
 }
