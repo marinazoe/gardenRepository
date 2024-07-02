@@ -14,7 +14,7 @@ import com.example.gardeningPlanner.Tables.Plant;
  * more information down below
  */
 @DataJpaTest
-public class IPlantRepositoryTest {
+class IPlantRepositoryTest {
 
     @Autowired
     IPlantRepository iPlantRepository;

@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.example.gardeningPlanner.Repositories.IUserRepository;
 import com.example.gardeningPlanner.Tables.UserAccount;
 
-public class UserAccountDetailsServiceTest {
+class UserAccountDetailsServiceTest {
 
     @Test
     void testLoadUserByUsername() {

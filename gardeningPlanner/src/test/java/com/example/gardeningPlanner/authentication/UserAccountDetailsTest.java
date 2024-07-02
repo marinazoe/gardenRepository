@@ -10,7 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import com.example.gardeningPlanner.Tables.UserAccount;
 
-public class UserAccountDetailsTest {
+class UserAccountDetailsTest {
     
     private UserAccount userAccount;
     private UserAccountDetails userAccountDetails;

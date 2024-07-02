@@ -10,7 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import com.example.gardeningPlanner.Tables.UserAccount;
 
 @DataJpaTest
-public class IUserRepositoryTest {
+class IUserRepositoryTest {
 
     @Autowired
     IUserRepository iUserRepository;

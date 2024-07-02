@@ -18,7 +18,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @DataJpaTest
-public class IUserPlantRepositoryTest {
+class IUserPlantRepositoryTest {
 
     @Autowired
     IUserPlantRepository iUserPlantRepository;
