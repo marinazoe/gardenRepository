@@ -1,34 +1,31 @@
 package com.example.gardeningPlanner.controller;
 
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static com.example.gardeningPlanner.SecurityMockMvc.HttpMethod.GET;
+import static com.example.gardeningPlanner.SecurityMockMvc.HttpMethod.POST;
+import static org.hamcrest.Matchers.*;
+import static org.mockito.Mockito.when;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.web.servlet.MockMvc;
 
+import com.example.gardeningPlanner.SecurityMockMvc;
 import com.example.gardeningPlanner.Repositories.IPlantRepository;
 import com.example.gardeningPlanner.Repositories.IUserPlantRepository;
 import com.example.gardeningPlanner.Repositories.IUserRepository;
 import com.example.gardeningPlanner.Tables.Plant;
 import com.example.gardeningPlanner.Tables.UserAccount;
-import com.example.gardeningPlanner.Tables.UserPlant;
+import com.example.gardeningPlanner.authentication.UserAccountDetails;
 
 @WebMvcTest(PlantListController.class)
-public class PlantListControllerTest {
-
-    @Autowired
-    private MockMvc mockMvc;
+public class PlantListControllerTest extends SecurityMockMvc {
 
     @MockBean
     private IPlantRepository plantRepository;
@@ -39,47 +36,78 @@ public class PlantListControllerTest {
     @MockBean
     private IUserPlantRepository userPlantRepository;
 
-    private List<Plant> plants;
+    private Plant monstera;
+    private UserAccount mockUserAccount;
+    private UserAccountDetails mockUserAccountDetails;
 
     @BeforeEach
-    void setup() {
-        Plant monstera = new Plant("Monstera", 1, 1, 1, 1, "Low light", 20, 50);
-        plants = Arrays.asList(monstera);
-        when(plantRepository.findAll()).thenReturn(plants);
+    public void setUp() {
+        
+        monstera = new Plant("Monstera deliciosa", 
+                        4, 
+                        2,
+                        2, 
+                        1, 
+                        "Heller Standort, keine direkte Sonne", 
+                        18, 
+                        60);
+        when(plantRepository.findById(monstera.getId())).thenReturn(Optional.of(monstera));
+
+        
+        mockUserAccount = new UserAccount("testUser", "password", "test@example.com");
+        mockUserAccountDetails = new UserAccountDetails(mockUserAccount);
+
+        when(userRepository.findById(mockUserAccount.getId())).thenReturn(Optional.of(mockUserAccount));
     }
 
     @Test
-    @WithMockUser(username="user", roles={"USER"})
+    @WithMockUser(username="testUser", roles={"USER"})
     public void testViewPlantList() throws Exception {
-        mockMvc.perform(get("/pflanzenListe"))
-                .andExpect(status().isOk())
-                .andExpect(model().attributeExists("list"))
-                .andExpect(model().attribute("list", plants))
-                .andExpect(view().name("plant_list"));
+
+        // Arrange
+        mvc.perform(request(GET, "/pflanzenListe"))
+
+            // Assert
+            .andExpect(status().isOk())
+            .andExpect(view().name("plant_list"));
     }
 
     @Test
-    @WithMockUser(username="user", roles={"USER"})
+    @WithMockUser(username="testUser", roles={"USER"})
     public void testAddPlantToUser() throws Exception {
-        when(plantRepository.findById(1)).thenReturn(Optional.of(plants.get(0)));
-        when(userRepository.findById(any())).thenReturn(Optional.of(new UserAccount("user", "pass", "user@example.com")));
 
-        mockMvc.perform(post("/pflanzeHinzufuegen")
-                .param("plantId", "1"))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/pflanzenListe"));
-
-        verify(userPlantRepository).save(any(UserPlant.class));
+        // Arrange
+        mvc.perform(request(POST, "/pflanzeHinzufuegen")
+                .param("plantId", String.valueOf(monstera.getId()))
+                .with(user(mockUserAccountDetails)))
+            
+            // Assert
+            .andExpect(status().is3xxRedirection())
+            .andExpect(redirectedUrl("/pflanzenListe"));
     }
 
     @Test
-    @WithMockUser(username="user", roles={"USER"})
-    public void testAddNonExistentPlant() throws Exception {
-        when(plantRepository.findById(999)).thenReturn(Optional.empty());
+    @WithMockUser(username = "testUser", roles = {"USER"})
+    public void testViewPlantListWithExistingPlant() throws Exception {
+        
+        // Act
+        when(plantRepository.findAll()).thenReturn(Arrays.asList(monstera));
 
-        mockMvc.perform(post("/pflanzeHinzufuegen")
-                .param("plantId", "999"))
-                .andExpect(status().isNotFound());
+        // Arrange
+        mvc.perform(request(GET, "/pflanzenListe"))
+
+            // Assert
+            .andExpect(status().isOk())
+            .andExpect(view().name("plant_list"))
+            .andExpect(model().attribute("list", hasSize(1)))
+            .andExpect(model().attribute("list", hasItem(hasProperty("name", is("Monstera deliciosa")))))
+            .andExpect(model().attribute("list", hasItem(hasProperty("water_summer", is(4)))))
+            .andExpect(model().attribute("list", hasItem(hasProperty("water_winter", is(2)))))
+            .andExpect(model().attribute("list", hasItem(hasProperty("fertilize_summer", is(2)))))
+            .andExpect(model().attribute("list", hasItem(hasProperty("fertilize_winter", is(1)))))
+            .andExpect(model().attribute("list", hasItem(hasProperty("spot", is("Heller Standort, keine direkte Sonne")))))
+            .andExpect(model().attribute("list", hasItem(hasProperty("temperature", is(18.0F)))))
+            .andExpect(model().attribute("list", hasItem(hasProperty("humidity", is(60)))));
     }
 }
 
