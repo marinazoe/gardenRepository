@@ -21,7 +21,7 @@ import com.example.gardeningPlanner.Tables.Plant;
 
 
 @ExtendWith(MockitoExtension.class)
-public class PlantInitializerTest {
+class PlantInitializerTest {
 
     @Mock
     private IPlantRepository iPlantRepository;
@@ -30,7 +30,7 @@ public class PlantInitializerTest {
     private PlantInitializer plantInitializer;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         plantInitializer = new PlantInitializer(iPlantRepository);
     }
 

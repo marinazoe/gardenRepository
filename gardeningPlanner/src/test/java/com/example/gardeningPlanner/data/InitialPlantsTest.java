@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.example.gardeningPlanner.Tables.Plant;
 
-public class InitialPlantsTest {
+class InitialPlantsTest {
 
     @Test
     void testGetInitialPlants() {

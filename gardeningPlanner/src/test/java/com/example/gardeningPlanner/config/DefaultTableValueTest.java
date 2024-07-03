@@ -21,7 +21,7 @@ import com.example.gardeningPlanner.Tables.UserAccount;
 import com.example.gardeningPlanner.Tables.UserPlant;
 
 @ExtendWith(MockitoExtension.class)
-public class DefaultTableValueTest {
+class DefaultTableValueTest {
 
     @Mock
     private IUserRepository iUserRepository;
@@ -39,12 +39,12 @@ public class DefaultTableValueTest {
     private DefaultTableValue defaultTableValue;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         defaultTableValue = new DefaultTableValue(iUserRepository, iUserPlantRepository, iPlantRepository, passwordEncoder);
     }
 
     @Test
-    public void testCommandLineRunnerWithDefaultTableValues() throws Exception {
+    void testCommandLineRunnerWithDefaultTableValues() throws Exception {
         // Arrange
 
         when(iUserRepository.findByUsername("default")).thenReturn(Optional.empty());
@@ -67,7 +67,7 @@ public class DefaultTableValueTest {
     }
     
     @Test
-    public void testCommandLineRunnerWithDefaultTableValuesWhenUserExistsShouldNotInsertDefaultValues() throws Exception {
+    void testCommandLineRunnerWithDefaultTableValuesWhenUserExistsShouldNotInsertDefaultValues() throws Exception {
         // Arrange
         when(iUserRepository.findByUsername("default")).thenReturn(Optional.of(new UserAccount("default", "default", "default@mail.com")));
 
