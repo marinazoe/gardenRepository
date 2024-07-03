@@ -12,7 +12,7 @@ import com.example.gardeningPlanner.Repositories.IUserRepository;
 
 // Based on the Unit Tests from "Programmieren 2"
 
-public class AuthentificationConfigTest {
+class AuthentificationConfigTest {
 
     @Test
     void testAuthenticationManagerBeanShouldBeDefined() {

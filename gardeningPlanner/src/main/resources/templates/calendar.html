@@ -53,12 +53,12 @@
                                 <div class="calendar-icon-column">
                                     <img class="calendar-icon" th:if="${dayInfo.plantsToWater.size() > 0}" 
                                     src="/images/water.png"
-                                    th:title="${#strings.listJoin(dayInfo.plantsToWater.![name], ', ')}">
+                                    th:title="${#strings.listJoin(dayInfo.plantsToWater.![{name, nickname}], ', ')}">
                                 </div>
                                 <div class="calendar-icon-column">
                                     <img class="calendar-icon" th:if="${dayInfo.plantsToFertilize.size() > 0}" 
                                     src="/images/fertilize.png"
-                                    th:title="${#strings.listJoin(dayInfo.plantsToFertilize.![name], ', ')}">
+                                    th:title="${#strings.listJoin(dayInfo.plantsToFertilize.![{name, nickname}], ', ')}">
                                 </div>
                             </div>
                         </div>

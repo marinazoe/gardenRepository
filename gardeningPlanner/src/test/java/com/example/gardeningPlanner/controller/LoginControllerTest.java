@@ -18,7 +18,7 @@ import com.example.gardeningPlanner.SecurityMockMvc;
 
 @Import({SecurityFilterConfig.class, AuthentificationConfig.class, H2ConsoleProperties.class})
 @WebMvcTest(LoginController.class)
-public class LoginControllerTest extends SecurityMockMvc{
+class LoginControllerTest extends SecurityMockMvc{
 
     @MockBean
     private IUserRepository iUserRepository;

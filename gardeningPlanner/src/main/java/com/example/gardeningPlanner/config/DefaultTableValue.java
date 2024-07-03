@@ -35,7 +35,7 @@ public class DefaultTableValue {
 
     @Order(2)
     @Bean
-	CommandLineRunner commandLineRunnerWithDefaultTableValues (IUserRepository iUserRepository, IUserPlantRepository iUserPlantRepository, IPlantRepository iPlantRepository){
+	CommandLineRunner commandLineRunnerWithDefaultTableValues (){
 		return args -> {
             insertDefaultValues("default@mail.com", "default", "default", "Monstera deliciosa");
 		};

@@ -22,7 +22,7 @@ public class PlantInitializer {
     
     @Order(1)
     @Bean
-    CommandLineRunner commandLineRunner(IPlantRepository iPlantRepository) {
+    CommandLineRunner commandLineRunner() {
         return args -> {
             insertInitialPlants();
         };
