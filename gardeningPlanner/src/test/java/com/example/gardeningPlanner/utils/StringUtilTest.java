@@ -10,42 +10,42 @@ import org.junit.jupiter.api.Test;
 class StringUtilTest {
 
     @Test
-    void isEmpty_NullString_ReturnsTrue() {
+    void testIsEmpty_NullString_ReturnsTrue() {
         assertTrue(StringUtil.isEmpty(null));
     }
 
     @Test
-    void isEmpty_BlankString_ReturnsTrue() {
+    void testIsEmpty_BlankString_ReturnsTrue() {
         assertTrue(StringUtil.isEmpty(""));
     }
 
     @Test
-    void isEmpty_NonEmptyString_ReturnsFalse() {
+    void testIsEmpty_NonEmptyString_ReturnsFalse() {
         assertFalse(StringUtil.isEmpty("Hello"));
     }
 
     @Test
-    void trim_NullString_ReturnsNull() {
+    void testTrim_NullString_ReturnsNull() {
         assertNull(StringUtil.trim(null));
     }
 
     @Test
-    void trim_NonNullString_ReturnsTrimmedString() {
+    void testTrim_NonNullString_ReturnsTrimmedString() {
         assertEquals("Hello", StringUtil.trim("  Hello  "));
     }
 
     @Test 
-    void isEmail_NullString_ReturnsFalse() {
+    void testIsEmail_NullString_ReturnsFalse() {
         assertFalse(StringUtil.isEmail(null));
     }
 
     @Test 
-    void isEmail_EmptyString_ReturnsFalse() {
+    void testIsEmail_EmptyString_ReturnsFalse() {
         assertFalse(StringUtil.isEmail(""));
     }
 
     @Test
-    void isEmail_InvalidFormat_ReturnsFalse() {
+    void testIsEmail_InvalidFormat_ReturnsFalse() {
         // Arrange and Act
         String email1 = "test@tes.de@test";
         String email2 = "testtesttest";

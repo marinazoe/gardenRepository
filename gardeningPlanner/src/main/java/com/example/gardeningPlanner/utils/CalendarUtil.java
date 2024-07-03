@@ -10,12 +10,11 @@ public final class CalendarUtil {
      * Calculates all dates at which actions need to be taken, either watering or fertilizing, in the current month and the next month. 
      * frequencyReference need to be 30 if it refernce to once a month. 
      */
-    public static List<LocalDate> calculateDates(LocalDate addedDate, int frequencySummer, int frequencyWinter, int frequencyReference) {
+    public static List<LocalDate> calculateDates(LocalDate addedDate, LocalDate currentDate, int frequencySummer, int frequencyWinter, int frequencyReference, int monthsInAdvance) {
 
         List<LocalDate> dates = new ArrayList<>();
         LocalDate calculationDate = addedDate;
         int month = calculationDate.getMonth().getValue();
-        LocalDate currentDate = LocalDate.now();
         int frequency = calculatefrequency(month, 0, frequencyWinter, frequencySummer);
         int daysBetweenAction = (int) Math.round((float)frequencyReference / (float)frequency);
 
@@ -31,7 +30,7 @@ public final class CalendarUtil {
         month = currentDate.getMonth().getValue();
 
         //i defines how many months should be calculated
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < monthsInAdvance; i++) {
             frequency = calculatefrequency(month, i, frequencyWinter, frequencySummer);
             //Uses the frequencies to calculate the days between actions 
             daysBetweenAction = (int) Math.round((float)frequencyReference / (float)frequency);

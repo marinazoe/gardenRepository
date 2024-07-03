@@ -47,8 +47,8 @@ public class CalendarController {
         List<CalenderPlant> calendarPlants = new ArrayList<>();
 
         for (UserPlant userPlant : currentUserPlants) {
-            var wateringDates = CalendarUtil.calculateDates(userPlant.getAdded_date(), userPlant.getPlant().getWater_summer(), userPlant.getPlant().getWater_winter(), 30);
-            var fertilizeDates = CalendarUtil.calculateDates(userPlant.getAdded_date(), userPlant.getPlant().getFertilize_summer(), userPlant.getPlant().getFertilize_winter(), 30);
+            var wateringDates = CalendarUtil.calculateDates(userPlant.getAdded_date(), LocalDate.now(), userPlant.getPlant().getWater_summer(), userPlant.getPlant().getWater_winter(), 30, 6);
+            var fertilizeDates = CalendarUtil.calculateDates(userPlant.getAdded_date(), LocalDate.now(), userPlant.getPlant().getFertilize_summer(), userPlant.getPlant().getFertilize_winter(), 30, 6);
             String plantName = userPlant.getPlant().getName();
             String plantNickname = userPlant.getNickname();
             calendarPlants.add(new CalenderPlant(plantName, plantNickname, wateringDates, fertilizeDates));
