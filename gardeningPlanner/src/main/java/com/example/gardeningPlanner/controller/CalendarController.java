@@ -107,7 +107,7 @@ public class CalendarController {
         return iUserPlantRepository.findAllByUserAccount(userAccount).orElseThrow(NoSuchElementException::new);
     }
 
-    private int getFirstWeekday(DayOfWeek dayOfWeek) {
+    public int getFirstWeekday(DayOfWeek dayOfWeek) {
         switch (dayOfWeek) {
             case MONDAY:
                 return 0;
@@ -128,7 +128,7 @@ public class CalendarController {
         }
     }
 
-    private String getMonthName(Month month) {
+    public String getMonthName(Month month) {
         switch (month) {
             case JANUARY:
                 return "Januar";
@@ -159,7 +159,7 @@ public class CalendarController {
         }
     }
 
-    private List<CalenderPlant> getPlantsToWater(LocalDate date, List<CalenderPlant> calenderPlants) {
+    public List<CalenderPlant> getPlantsToWater(LocalDate date, List<CalenderPlant> calenderPlants) {
         List<CalenderPlant> results = new ArrayList<>();
         for (CalenderPlant plant : calenderPlants) {
             if (plant.wateringDates.contains(date)) {
@@ -169,7 +169,7 @@ public class CalendarController {
         return results;
     }
 
-    private List<CalenderPlant> getPlantsToFertilize(LocalDate date, List<CalenderPlant> calenderPlants) {
+    public List<CalenderPlant> getPlantsToFertilize(LocalDate date, List<CalenderPlant> calenderPlants) {
         List<CalenderPlant> results = new ArrayList<>();
         for (CalenderPlant plant : calenderPlants) {
             if (plant.fertilizeDates.contains(date)) {
