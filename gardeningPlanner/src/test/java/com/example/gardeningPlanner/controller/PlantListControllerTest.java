@@ -64,10 +64,8 @@ public class PlantListControllerTest extends SecurityMockMvc {
     @WithMockUser(username="testUser", roles={"USER"})
     public void testViewPlantList() throws Exception {
 
-        // Arrange
+        // Act & Assert
         mvc.perform(request(GET, "/pflanzenListe"))
-
-            // Assert
             .andExpect(status().isOk())
             .andExpect(view().name("plant_list"));
     }
@@ -76,27 +74,23 @@ public class PlantListControllerTest extends SecurityMockMvc {
     @WithMockUser(username="testUser", roles={"USER"})
     public void testAddPlantToUser() throws Exception {
 
-        // Arrange
+        // Act & Assert
         mvc.perform(request(POST, "/pflanzeHinzufuegen")
                 .param("plantId", String.valueOf(monstera.getId()))
                 .with(user(mockUserAccountDetails)))
-            
-            // Assert
-            .andExpect(status().is3xxRedirection())
-            .andExpect(redirectedUrl("/pflanzenListe"));
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/pflanzenListe"));
     }
 
     @Test
     @WithMockUser(username = "testUser", roles = {"USER"})
     public void testViewPlantListWithExistingPlant() throws Exception {
         
-        // Act
+        // Arrange
         when(plantRepository.findAll()).thenReturn(Arrays.asList(monstera));
 
-        // Arrange
+        // Arrange & Assert
         mvc.perform(request(GET, "/pflanzenListe"))
-
-            // Assert
             .andExpect(status().isOk())
             .andExpect(view().name("plant_list"))
             .andExpect(model().attribute("list", hasSize(1)))
