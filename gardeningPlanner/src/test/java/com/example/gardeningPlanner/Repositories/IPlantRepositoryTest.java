@@ -85,7 +85,8 @@ class IPlantRepositoryTest {
     /*
      * IMPORTANT!
      * If used as a single test: ".isEqualTo(1)" needs to be written
-     * if used to test all tests: ".isEqualTo(4)" needs to be written
+     * if used to test all tests in the class: ".isEqualTo(4)" needs to be written
+     * if used to test all tests in the whole application: ".isEqualTo(17)" needs to be written
      */
     @Test
     void testFindById() {
@@ -98,7 +99,7 @@ class IPlantRepositoryTest {
 
         // Assert
         assertThat(result).isPresent();
-        assertThat(result.get().getId()).isEqualTo(4);
+        assertThat(result.get().getId()).isEqualTo(17);
     }
 
     @Test
